@@ -78,6 +78,24 @@
       </div>
     </div>
   </dialog>
+
+  <dialog id="pageDialog" class="page-dialog" aria-labelledby="pageDialogTitle">
+    <div class="page-dialog__inner">
+      <button id="closePageDialog" class="dialog-close" type="button" aria-label="Großansicht schließen">×</button>
+      <p class="terminal-kicker">DIGITALES HAUSARCHIV</p>
+      <h2 id="pageDialogTitle">Druckseite</h2>
+      <div id="pageTabs" class="page-tabs" aria-label="Verfügbare Seiten"></div>
+      <div class="page-image-scroll">
+        <img id="pageImage" src="" alt="Vergrößerte Druckseite">
+      </div>
+      <div class="page-dialog__controls">
+        <button id="zoomOut" type="button" aria-label="Verkleinern"><span>−</span></button>
+        <button id="zoomReset" type="button"><span>100 %</span></button>
+        <button id="zoomIn" type="button" aria-label="Vergrößern"><span>+</span></button>
+        <a id="pageDownload" class="image-action image-action--download" href="" download>↓ Bild speichern</a>
+      </div>
+    </div>
+  </dialog>
   <script src="app.js"></script>
 </body>
 </html>

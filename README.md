@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v11
+# Escape-Archiv · Decoder v12
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -17,7 +17,7 @@ Das Geisterhaus besitzt 15 Stationen in zwei Stockwerken, eine längere Einleitu
 
 Jede Geisterhaus-Station besitzt außerdem eine freiwillige kleine Hilfe. Vor dem Öffnen erscheint eine Warnung; danach folgen ein eigener frecher Kommentar und ein Hinweis, der die Lösung nicht direkt verrät.
 
-Bei jedem Geisterhaus-Rätsel lässt sich die benötigte Druckseite zusätzlich als vergrößerbares Einzelbild öffnen oder auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an.
+Bei jedem Geisterhaus-Rätsel lässt sich die benötigte Druckseite nach einer gruseligen Sicherheitsabfrage direkt in der App öffnen, stufenweise vergrößern und auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an. Hinweise auf das nächste Ziel erscheinen erst nach einer richtigen Lösung.
 
 ## Drucksatz
 

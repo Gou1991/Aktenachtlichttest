@@ -93,6 +93,49 @@ const games = {
 let game, gameId, step = 0, audioContext, emergencyStep = 0;
 const $ = id => document.getElementById(id);
 const norm = value => value.trim().toUpperCase().replace(/\s+/g, '').replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE');
+const viewerWarnings = [
+  'Manche Türen sollten geschlossen bleiben. Diese hier vermutlich auch.',
+  'Der Hausplan verändert sich gern, sobald jemand genauer hinsieht.',
+  'Das Kinderzimmer schaut zurück. Nur damit ihr gewarnt seid.',
+  'Im Glas erscheint manchmal eine Person mehr als davorsteht.',
+  'Ein Buch wurde zuletzt von innen zugeschlagen.',
+  'Das Klavier spielt weiter, wenn längst niemand mehr im Raum ist.',
+  'Aus der Küche hört man Besteck für einen zusätzlichen Gast.',
+  'Im Keller wartet etwas geduldig am Ende jedes falschen Weges.',
+  'Die Kälte auf dem Bild stammt nicht von eurem Bildschirm.',
+  'Nicht jeder Stern über Amselgrund gehört an den Himmel.',
+  'Beim letzten Falten hat jemand auf der anderen Seite geatmet.',
+  'Die Erinnerung bemerkt, wenn sie miteinander verglichen wird.',
+  'Auf dem Familienbild fehlt angeblich niemand. Angeblich.',
+  'Durch manche ausgeschnittenen Fenster sieht man mehr als Buchstaben.',
+  'Das Titelblatt kennt euren Namen noch nicht. Lasst es dabei.'
+];
+let pageZoom = 1;
+
+function pageImageSource(page) {
+  return `assets/geisterhaus/seiten/Geisterhaus-Seite-${String(page).padStart(2,'0')}.jpg`;
+}
+
+function setPageZoom(value) {
+  pageZoom=Math.min(3,Math.max(1,value));
+  $('pageImage').style.width=`${pageZoom*100}%`;
+  $('zoomReset').querySelector('span').textContent=`${Math.round(pageZoom*100)} %`;
+}
+
+function selectPageImage(page) {
+  const src=pageImageSource(page);
+  $('pageDialogTitle').textContent=`Druckseite ${page}`;
+  $('pageImage').src=src; $('pageImage').alt=`Druckseite ${page} des Spiels Das verlassene Geisterhaus`;
+  $('pageDownload').href=src; $('pageDownload').setAttribute('download',`Geisterhaus-Seite-${String(page).padStart(2,'0')}.jpg`);
+  document.querySelectorAll('[data-page-tab]').forEach(tab=>tab.classList.toggle('is-active',Number(tab.dataset.pageTab)===Number(page)));
+  setPageZoom(1); document.querySelector('.page-image-scroll').scrollTo(0,0);
+}
+
+function openPageDialog(pages,startPage) {
+  $('pageTabs').innerHTML=pages.map(page=>`<button type="button" data-page-tab="${page}"><span>Seite ${page}</span></button>`).join('');
+  document.querySelectorAll('[data-page-tab]').forEach(tab=>tab.onclick=()=>selectPageImage(tab.dataset.pageTab));
+  selectPageImage(startPage); $('pageDialog').showModal();
+}
 
 function buildMenu() {
   $('gameGrid').innerHTML = Object.entries(games).map(([id, entry]) => `
@@ -164,11 +207,12 @@ function render() {
   const pageText=numbered ? `Seite ${p.page} · Rätsel ${p.no}` : `Seite ${p.page}`;
   const prompt=p.plural ? `Gebt die gemeinsame Lösung der Seiten ${p.page} ein.` : `Gebt die Lösung von ${pageText} ein.`;
   const imagePages=gameId==='geisterhaus'?[...new Set([p.page,...(p.relatedPages||[])])]:[];
-  const pageViewer=imagePages.length?`<div class="page-viewer"><strong>Druckseiten digital ansehen</strong><p>Öffnet die Seite groß auf dem Handy und zoomt in feine Bleistiftspuren hinein.</p>${imagePages.map(page=>{const src=`assets/geisterhaus/seiten/Geisterhaus-Seite-${String(page).padStart(2,'0')}.jpg`;return `<div class="page-viewer__actions"><a class="image-action" href="${src}" target="_blank" rel="noopener" aria-label="Seite ${page} groß öffnen">▣ Seite ${page} groß öffnen</a><a class="image-action image-action--download" href="${src}" download>↓ Seite ${page} speichern</a></div>`}).join('')}</div>`:'';
+  const pageViewer=imagePages.length?`<div class="page-viewer"><button id="openPageWarning" class="page-viewer-button" type="button"><span>▣ Druckseite groß ansehen</span></button><div id="pageWarning" class="page-warning" hidden><strong>Ansicht wirklich öffnen?</strong><p>${viewerWarnings[step]}</p><small>Die Seite wird direkt in der App geöffnet. Zoomen könnte Dinge sichtbar machen, die auf dem Papier verborgen bleiben.</small><div class="hint-actions"><button id="confirmPageView" type="button"><span>Ja, Seite öffnen</span></button><button id="cancelPageView" class="secondary-action" type="button"><span>Lieber nicht</span></button></div></div></div>`:'';
+  const showPacket=p.transmission && (gameId!=='geisterhaus' || p.no===3 || p.no===10);
   $('stage').innerHTML=`<div class="status" aria-label="Rätselstatus"><span>Rätsel ${step+1} von ${game.puzzles.length}</span><span id="typeLabel">${pageText}</span></div>
     <div class="progress" aria-hidden="true"><span style="--progress:${((step+1)/game.puzzles.length)*100}%"></span></div>
     <div class="puzzle-sheet"><div class="paper-clip" aria-hidden="true"></div><h2>${pageText}</h2><p id="prompt">${prompt}</p>
-    ${p.transmission ? `<div class="transmission"><strong>&gt; APP-DATENPAKET</strong><p>${p.transmission}</p>${p.downloadAsset?`<a class="puzzle-download" href="${p.downloadAsset}" download>${p.downloadLabel||'Bild herunterladen'} ↓</a>`:''}</div>` : ''}
+    ${showPacket ? `<div class="transmission"><strong>&gt; APP-DATENPAKET</strong><p>${p.transmission}</p>${p.downloadAsset?`<a class="puzzle-download" href="${p.downloadAsset}" download>${p.downloadLabel||'Bild herunterladen'} ↓</a>`:''}</div>` : ''}
     ${pageViewer}
     <label for="answer">Eure Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="${p.inputMode||'text'}" placeholder="Code oder Lösungswort">
     <button id="check" type="button"><span>Prüfen</span></button><p id="message" aria-live="polite"></p>
@@ -178,6 +222,11 @@ function render() {
     $('openHint').onclick=()=>{$('openHint').hidden=true;$('hintWarning').hidden=false;$('confirmHint').focus()};
     $('cancelHint').onclick=()=>{$('hintWarning').hidden=true;$('openHint').hidden=false;$('openHint').focus()};
     $('confirmHint').onclick=()=>{$('hintWarning').hidden=true;$('hintReveal').hidden=false};
+  }
+  if(imagePages.length){
+    $('openPageWarning').onclick=()=>{$('openPageWarning').hidden=true;$('pageWarning').hidden=false;$('confirmPageView').focus()};
+    $('cancelPageView').onclick=()=>{$('pageWarning').hidden=true;$('openPageWarning').hidden=false;$('openPageWarning').focus()};
+    $('confirmPageView').onclick=()=>openPageDialog(imagePages,p.page);
   }
   $('answer').focus({preventScroll:true});
 }
@@ -222,6 +271,9 @@ function initialize(){
   $('emergencyGame').onchange=()=>{emergencyStep=0;renderEmergency(false)};
   $('revealSolution').onclick=()=>renderEmergency(true); $('nextSolution').onclick=nextEmergencySolution;
   $('emergencyDialog').addEventListener('click',e=>{if(e.target===$('emergencyDialog'))$('emergencyDialog').close()});
+  $('closePageDialog').onclick=()=>$('pageDialog').close();
+  $('zoomOut').onclick=()=>setPageZoom(pageZoom-.25); $('zoomReset').onclick=()=>setPageZoom(1); $('zoomIn').onclick=()=>setPageZoom(pageZoom+.25);
+  $('pageDialog').addEventListener('click',e=>{if(e.target===$('pageDialog'))$('pageDialog').close()});
   const id=new URLSearchParams(location.search).get('game'); id&&games[id]?start(id,false):showMenu(false);
 }
 initialize();
