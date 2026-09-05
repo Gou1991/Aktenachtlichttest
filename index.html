@@ -1,1 +1,67 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111827"><title>Escape Decoder</title><link rel="stylesheet" href="style.css"></head><body><main class="shell"><section class="card"><div class="eyebrow">ESCAPE // DECODER</div><h1 id="title">Spiel laden …</h1><p id="story" class="story"></p><div id="selectWrap"><label for="gameSelect">Spiel auswählen</label><select id="gameSelect"></select><button id="loadGame">Spiel starten</button></div><div id="decoder" hidden><div class="status"><span id="stepLabel"></span><span id="typeLabel"></span></div><h2 id="puzzleTitle"></h2><p id="prompt"></p><div id="toolArea"></div><label for="answer">Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" placeholder="Code oder Lösungswort"><button id="check">Entschlüsseln</button><p id="message" aria-live="polite"></p><details><summary>Hinweis</summary><p id="hint"></p></details></div></section></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07131d">
+  <meta name="description" content="Escape Decoder für Akte Nachtlicht">
+  <title>Akte Nachtlicht · Escape Decoder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <main class="shell">
+    <section class="case-file" aria-labelledby="title">
+      <header class="case-header">
+        <div class="classification">GEHEIM</div>
+        <div class="case-number">FALL NR. NL–0047</div>
+      </header>
+
+      <div class="brand-row">
+        <div class="lighthouse-mark" aria-hidden="true">
+          <span class="beam"></span><span class="lantern"></span><span class="tower"></span><span class="rocks"></span>
+        </div>
+        <div>
+          <div class="eyebrow">ESCAPE DECODER</div>
+          <h1 id="title">Spiel laden …</h1>
+        </div>
+      </div>
+
+      <p id="story" class="story"></p>
+
+      <div id="selectWrap" class="selection-panel">
+        <label for="gameSelect">Einsatzakte auswählen</label>
+        <div class="select-frame"><select id="gameSelect"></select></div>
+        <button id="loadGame" type="button"><span>Spiel starten</span></button>
+      </div>
+
+      <div id="decoder" hidden>
+        <div class="status" aria-label="Rätselstatus">
+          <span id="stepLabel"></span><span id="typeLabel"></span>
+        </div>
+        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+        <div class="puzzle-sheet">
+          <div class="paper-clip" aria-hidden="true"></div>
+          <h2 id="puzzleTitle"></h2>
+          <p id="prompt"></p>
+          <div id="toolArea"></div>
+
+          <label for="answer">Gefundene Lösung</label>
+          <input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="Code oder Lösungswort">
+          <button id="check" type="button"><span>Entschlüsseln</span></button>
+          <p id="message" aria-live="polite"></p>
+
+          <details id="hintBox">
+            <summary><span class="hint-icon" aria-hidden="true">?</span> Hinweis öffnen</summary>
+            <p id="hint"></p>
+          </details>
+        </div>
+      </div>
+
+      <footer><span>AKTE NACHTLICHT</span><span>VERTRAULICH</span></footer>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
