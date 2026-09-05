@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v10
+# Escape-Archiv · Decoder v11
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -16,6 +16,8 @@ ZIP entpacken und den gesamten Inhalt in das bestehende GitHub-Repository hochla
 Das Geisterhaus besitzt 15 Stationen in zwei Stockwerken, eine längere Einleitung, Story-Fortschritt nach jeder richtigen Antwort, zwei in der App ladbare Prüfbilder sowie eine animierte Abschlusssequenz mit unheimlichem, synthetischem Erfolgssignal. Der Ton wird erst nach einer Eingabe aktiviert und kann im Finale wiederholt werden.
 
 Jede Geisterhaus-Station besitzt außerdem eine freiwillige kleine Hilfe. Vor dem Öffnen erscheint eine Warnung; danach folgen ein eigener frecher Kommentar und ein Hinweis, der die Lösung nicht direkt verrät.
+
+Bei jedem Geisterhaus-Rätsel lässt sich die benötigte Druckseite zusätzlich als vergrößerbares Einzelbild öffnen oder auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an.
 
 ## Drucksatz
 
