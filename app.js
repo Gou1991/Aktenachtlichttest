@@ -1,0 +1,14 @@
+const games={
+  demo:{name:'Akte Nachtlicht',theme:{accent:'#61e6c5'},story:'Demo-Spiel: Drei kleine Decoder zeigen die Grundidee der späteren Escape-App.',puzzles:[
+    {type:'Zahlencode',title:'Das Schloss',prompt:'Auf dem Zettel stehen die Zahlen 4 · 8 · 2 · 7. Gib den vierstelligen Code ein.',answer:'4827',hint:'Lies die Zahlen einfach von links nach rechts.'},
+    {type:'Lösungswort',title:'Die Nachricht',prompt:'„Ich leuchte nachts, bin aber keine Lampe. Manchmal bin ich voll.“',answer:'MOND',hint:'Schau in den Nachthimmel.'},
+    {type:'Caesar',title:'Terminal 03',prompt:'Entschlüssele mit einer Verschiebung von 3 zurück: OHXFKWWXUP',answer:'LEUCHTTURM',hint:'L → O bei +3. Zum Entschlüsseln also drei Buchstaben zurück.',caesar:true}
+  ]},
+  lab:{name:'Labor 47',theme:{accent:'#b6ff55'},story:'Zweite Theme-Demo. Später bekommt jedes echte Spiel seine eigene Konfiguration.',puzzles:[{type:'Lösungswort',title:'Notstrom',prompt:'Gib das Testwort ENERGIE ein.',answer:'ENERGIE',hint:'Das Lösungswort steht bereits im Auftrag.'}]}
+};
+let game,step=0;const $=id=>document.getElementById(id);const norm=s=>s.trim().toUpperCase().replace(/\s+/g,'');
+function fillGames(){Object.entries(games).forEach(([id,g])=>{let o=document.createElement('option');o.value=id;o.textContent=g.name;$('gameSelect').append(o)});const q=new URLSearchParams(location.search).get('game');if(q&&games[q]){$('gameSelect').value=q;start(q)}}
+function start(id){game=games[id];step=0;document.documentElement.style.setProperty('--accent',game.theme.accent);$('title').textContent=game.name;$('story').textContent=game.story;$('selectWrap').hidden=true;$('decoder').hidden=false;render()}
+function render(){const p=game.puzzles[step];$('stepLabel').textContent=`Rätsel ${step+1}/${game.puzzles.length}`;$('typeLabel').textContent=p.type;$('puzzleTitle').textContent=p.title;$('prompt').textContent=p.prompt;$('hint').textContent=p.hint;$('answer').value='';$('message').textContent='';$('message').className='';$('toolArea').innerHTML=p.caesar?'<div class="caesar"><output>Caesar-Hilfe: A→D, B→E, C→F …</output></div>':'';$('answer').focus()}
+function check(){const p=game.puzzles[step];if(norm($('answer').value)===norm(p.answer)){$('message').textContent='✓ Richtig – Zugriff freigegeben.';$('message').className='ok';setTimeout(()=>{if(step<game.puzzles.length-1){step++;render()}else{$('decoder').innerHTML='<div class="status">MISSION COMPLETE</div><h2>Geschafft!</h2><p class="story">Alle Demo-Rätsel wurden gelöst. Die Engine funktioniert.</p><button onclick="location.href=location.pathname">Zur Spielauswahl</button>'}},650)}else{$('message').textContent='✕ Code nicht akzeptiert.';$('message').className='bad'}}
+$('loadGame').onclick=()=>start($('gameSelect').value);$('check').onclick=check;$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()});fillGames();
