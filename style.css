@@ -229,3 +229,16 @@ body[data-game="geisterhaus"] footer{color:#555;border-color:#777}body[data-game
 @keyframes ghost-flicker{0%,94%,100%{opacity:1;text-shadow:0 0 2px #fff}95%{opacity:.38;text-shadow:0 0 16px #fff}97%{opacity:.78}}
 @media(max-width:900px) and (min-width:761px){.game-card--zeitfehler{grid-column:auto;max-width:none}}
 @media(max-width:760px){.game-grid,.download-grid{grid-template-columns:1fr}body[data-game="geisterhaus"] h1{font-size:clamp(31px,10vw,44px)}}
+
+/* ---------- Freche, zweistufige Rätselhilfe ---------- */
+.hint-zone{margin-top:23px;padding-top:18px;border-top:1px dashed #777}
+.hint-button{color:#1b1c1c!important;background:transparent!important;border:1px solid #555!important;box-shadow:none!important}
+.hint-warning,.hint-reveal{margin-top:14px;padding:18px;border:2px solid #222;background:repeating-linear-gradient(-8deg,rgba(0,0,0,.025) 0 1px,transparent 1px 7px),#deded8;box-shadow:4px 4px 0 rgba(0,0,0,.13)}
+.hint-warning>strong,.hint-reveal>strong{display:block;color:#111;font-family:"Oswald",sans-serif;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase}
+.hint-warning p,.hint-reveal p{margin:9px 0 0!important;color:#333!important;line-height:1.55!important}
+.hint-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.hint-actions button{min-width:0;margin:0;font-size:.72rem}
+.hint-reveal{position:relative;padding-left:24px;border-left:8px solid #171818;animation:hint-scratch .35s ease both}
+.hint-reveal::before{content:"// HINWEIS AUS DEM GEMÄUER";display:block;margin-bottom:10px;color:#62635f;font:700 .7rem/1.2 Consolas,monospace;letter-spacing:.07em}
+@keyframes hint-scratch{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@media(max-width:520px){.hint-actions{grid-template-columns:1fr}.hint-warning,.hint-reveal{padding:15px}.hint-reveal{padding-left:18px}}
