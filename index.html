@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07131d">
-  <meta name="description" content="Escape-Archiv mit den Spielen Akte Nachtlicht und Der verschwundene Drache">
-  <title>Escape-Archiv · Nachtlicht &amp; Drache</title>
+  <meta name="description" content="Escape-Archiv mit drei eigenständigen Rätselwelten">
+  <title>Escape-Archiv · Drei Rätselwelten</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     <section class="case-file" aria-labelledby="title">
       <header class="case-header">
         <div id="classification" class="classification">SPIELARCHIV</div>
-        <div id="caseNumber" class="case-number">ZWEI FÄLLE</div>
+        <div id="caseNumber" class="case-number">DREI FÄLLE</div>
       </header>
 
       <div class="brand-row">
@@ -34,29 +34,50 @@
           <p>Jede Akte besitzt ihre eigene Welt, Rätselroute und Abschlussüberraschung.</p>
         </div>
         <div id="gameGrid" class="game-grid" aria-label="Verfügbare Spiele"></div>
+        <section class="archive-tools" aria-labelledby="archiveToolsTitle">
+          <div class="archive-tools__head">
+            <div>
+              <span class="card-kicker">Sicherheitsfach</span>
+              <h3 id="archiveToolsTitle">Downloads &amp; Notfalllösungen</h3>
+            </div>
+            <button id="openEmergency" class="emergency-button" type="button"><span>⚠ Notfalllösung</span></button>
+          </div>
+          <div id="downloadGrid" class="download-grid" aria-label="Druckdateien herunterladen"></div>
+        </section>
       </div>
 
       <div id="decoder" hidden>
-        <div class="status" aria-label="Rätselstatus">
-          <span id="stepLabel"></span><span id="typeLabel"></span>
-        </div>
-        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
         <button id="backMenu" class="back-menu" type="button">← Spiel wechseln</button>
-
-        <div class="puzzle-sheet">
-          <div class="paper-clip" aria-hidden="true"></div>
-          <h2 id="puzzleTitle"></h2>
-          <p id="prompt"></p>
-          <label for="answer">Eure Lösung</label>
-          <input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="Code oder Lösungswort">
-          <button id="check" type="button"><span>Prüfen</span></button>
-          <p id="message" aria-live="polite"></p>
-        </div>
+        <div id="stage"></div>
       </div>
 
       <footer><span id="footerBrand">ESCAPE-ARCHIV</span><span id="footerStatus">BEREIT</span></footer>
     </section>
   </main>
+
+  <dialog id="emergencyDialog" class="emergency-dialog" aria-labelledby="emergencyTitle">
+    <div class="emergency-dialog__inner">
+      <button id="closeEmergency" class="dialog-close" type="button" aria-label="Notfallfenster schließen">×</button>
+      <p class="terminal-kicker">NOTFALLPROTOKOLL // SPIELLEITUNG</p>
+      <h2 id="emergencyTitle">Lösungszugang</h2>
+      <div id="emergencyLock">
+        <p>Nur verwenden, wenn eine Gruppe wirklich feststeckt. Gebt den vierstelligen Notfallcode ein.</p>
+        <label for="emergencyCode">Notfallcode</label>
+        <input id="emergencyCode" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••">
+        <button id="unlockEmergency" type="button"><span>Zugang prüfen</span></button>
+        <p id="emergencyMessage" aria-live="polite"></p>
+      </div>
+      <div id="emergencySolutions" hidden>
+        <label for="emergencyGame">Spiel auswählen</label>
+        <select id="emergencyGame"></select>
+        <div id="solutionCard" class="solution-card"></div>
+        <div class="solution-actions">
+          <button id="revealSolution" type="button"><span>Lösung anzeigen</span></button>
+          <button id="nextSolution" class="secondary-action" type="button" hidden><span>Nächster Schritt →</span></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
   <script src="app.js"></script>
 </body>
 </html>

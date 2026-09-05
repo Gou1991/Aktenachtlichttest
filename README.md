@@ -1,38 +1,23 @@
-# Akte Nachtlicht · Escape Decoder v2
+# Escape-Archiv · Decoder v6
 
-Statische, mobile Escape-Decoder-Web-App im nautischen Akten-Design. Keine Installation, kein Build-Schritt und kein Backend nötig.
+Statische, mobile Escape-Decoder-Web-App für drei Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
-## In das bestehende GitHub-Repository hochladen
-ZIP entpacken und den gesamten Inhalt in das bestehende Repository hochladen. Die vorhandenen Dateien ersetzen lassen und die Änderung bestätigen. Cloudflare Pages veröffentlicht die neue Version automatisch. `index.html` muss direkt im Hauptverzeichnis liegen.
+## Installation
 
-## Testen
-`index.html` im Browser öffnen. Für zuverlässiges lokales Testen kann auch ein einfacher lokaler Webserver verwendet werden.
+ZIP entpacken und den gesamten Inhalt in das bestehende GitHub-Repository hochladen. Vorhandene Dateien ersetzen lassen. `index.html` muss direkt im Hauptverzeichnis liegen; Cloudflare Pages veröffentlicht die Änderung anschließend automatisch.
 
-## Direkter Spieleinstieg
-Der QR-Code für Akte Nachtlicht kann direkt auf `https://aktenachtlichttest.pages.dev/?game=demo` zeigen. Zweite Demo: `?game=lab`.
+## Spiele
 
-## Beibehaltene Testlösungen
-- Akte Nachtlicht: `4827` → `MOND` → `LEUCHTTURM`
-- Labor 47: `ENERGIE`
+- `?game=demo` – Akte Nachtlicht
+- `?game=drache` – Der verschwundene Drache
+- `?game=zeitfehler` – ZEITFEHLER // NULLWALD
 
-## Neues Spiel hinzufügen
-In `app.js` im Objekt `games` eine weitere Spielkonfiguration ergänzen. Jedes Rätsel besitzt `type`, `title`, `prompt`, `answer` und `hint`.
+Das neue Spiel besitzt 15 Stationen, eine längere Einleitung, Story-Fortschritt nach jeder richtigen Antwort, zwei nur in der App verfügbare Datenpakete sowie eine animierte Abschlusssequenz mit synthetischem Erfolgssignal. Der Ton wird erst nach einer Eingabe aktiviert und kann im Finale wiederholt werden.
 
-## Aktuell enthalten
-- responsive Handy-Oberfläche
-- Spielauswahl
-- direkter Einstieg über `?game=...`
-- Akten-/Papieroptik, lokales Leuchtturm-Motiv, Messingakzente und rote Geheimstempel
-- Theme-Farbe je Spiel
-- Zahlencode
-- Lösungswort
-- Caesar-Demo
-- Hinweise
-- automatische Rätsel-Fortschaltung
-- verbesserte Bedienung und sichere Abstände auf modernen Smartphones
+## Drucksatz
 
-## Technischer Hinweis
-Die Schriften werden über Google Fonts geladen. Ohne Verbindung verwendet die App automatisch passende lokale Ersatzschriften. Das Hintergrundbild liegt lokal im Ordner `assets`.
+Der separate Drucksatz `Zeitfehler-Nullwald-15-Seiten.zip` enthält 15 nummerierte A4-PNG-Dateien. Die Seiten 6, 9 und 13 werden gefaltet beziehungsweise ausgeschnitten. Seite 13 wird als Lochmaske auf Seite 12 gelegt. Beim Drucken 100 % / tatsächliche Größe wählen und automatische Seitenanpassung deaktivieren.
 
-## Später sinnvoll
-Konfigurationen in eigene JSON-Dateien auslagern, echte Decoder-Werkzeuge ergänzen, Audio/Timer/QR-Funktionen, optionale Spielstände und serverseitige Lösungsprüfung.
+## Sicherheitsfach
+
+Auf der Hauptübersicht stehen die Druckdateien aller drei Spiele als lokale Downloads bereit. Der Notfallcode `9119` öffnet die schrittweise Lösungsanzeige für die Spielleitung. Die Anzeige wird direkt aus den Rätseldaten aufgebaut und übernimmt dadurch auch später ergänzte Spiele und Lösungen automatisch.

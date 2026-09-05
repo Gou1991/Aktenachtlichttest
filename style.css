@@ -97,11 +97,12 @@ body[data-game="menu"] .case-number{color:#c8b48c}
 body[data-game="menu"] footer{color:#aeb9ba;border-color:rgba(217,177,96,.23)}
 body[data-game="menu"] footer span:last-child{color:#d2a955}
 .menu-heading{margin:34px 0 20px;text-align:center}.menu-heading h2{margin:0;color:#f2e4c3;font-size:30px}.menu-heading p{max-width:650px;margin:8px auto 0;color:#9eabad;line-height:1.5}.menu-ornament{display:block;width:80px;height:2px;margin:0 auto 15px;background:linear-gradient(90deg,transparent,#c49b50,transparent)}
-.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .game-card{display:flex;min-width:0;min-height:440px;margin:0;padding:0;flex-direction:column;text-align:left;border:1px solid rgba(217,183,115,.38);border-radius:10px;color:#ede2cb;background:#101e28;box-shadow:0 17px 38px rgba(0,0,0,.38);text-transform:none;letter-spacing:normal;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
 .game-card::before{display:none}.game-card:hover{transform:translateY(-5px);border-color:#d4aa59;box-shadow:0 22px 48px rgba(0,0,0,.52)}
 .card-art{position:relative;display:block;width:100%;height:205px;overflow:hidden;border-radius:9px 9px 0 0}.card-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#101e28 100%)}.card-art img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}.game-card:hover .card-art img{transform:scale(1.045)}
 .game-card--nachtlicht .card-art img{object-position:60% 49%}.game-card--drache .card-art img{object-position:50% 45%}
+.game-card--zeitfehler .card-art img{object-position:center 18%;filter:grayscale(1) contrast(1.12)}
 .card-content{display:flex;padding:3px 23px 24px;flex:1;flex-direction:column}.card-kicker{color:#d4aa58;font-family:"Oswald",sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}.card-content strong{margin-top:7px;color:#fff1d2;font-family:"Oswald",sans-serif;font-size:28px;line-height:1.05;text-transform:uppercase}.game-card--drache .card-content strong{font-family:Georgia,serif;font-size:25px}.card-description{min-height:58px;margin-top:12px;color:#b8c2c3;font-family:"Special Elite",monospace;font-size:13px;line-height:1.48}.card-meta{display:flex;margin-top:12px;flex-wrap:wrap;gap:6px}.card-meta span{padding:5px 8px 3px;border:1px solid rgba(207,172,100,.25);border-radius:20px;color:#d7c7a5;background:rgba(255,255,255,.035);font-family:"Oswald",sans-serif;font-size:10px;letter-spacing:.05em}.card-action{display:flex;margin-top:auto;padding-top:18px;align-items:center;justify-content:space-between;color:#e7be6a;border-top:1px solid rgba(211,172,94,.18);font-family:"Oswald",sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.card-action b{font-size:22px}
 
 /* ---------- Akte Nachtlicht: kühle nautische Ermittlungsakte ---------- */
@@ -132,10 +133,64 @@ body[data-game="drache"] .paper-clip{border-color:#c49a49}
 body[data-game="drache"] .ok{color:#e0bb68}body[data-game="drache"] .bad{color:#f18d82}
 body[data-game="drache"] footer span:last-child{color:#7d2428}
 
+/* ---------- ZEITFEHLER: monochromes Terminal-Archiv ---------- */
+body[data-game="zeitfehler"]{background-color:#050706;background-image:linear-gradient(rgba(1,4,3,.48),rgba(1,4,3,.9)),url("assets/zeitfehler-cover.png");background-position:center 16%;background-size:cover;font-family:Consolas,"Courier New",monospace}
+body[data-game="zeitfehler"]::before{background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px),radial-gradient(circle at 50% 0,transparent,rgba(0,0,0,.62))}
+body[data-game="zeitfehler"] .case-file{color:#e9eee9;background:linear-gradient(145deg,rgba(15,19,17,.98),rgba(4,7,6,.98));border:2px solid #d7ddd8;border-radius:0;box-shadow:0 30px 90px #000,inset 0 0 55px rgba(220,255,230,.045);transform:none}
+body[data-game="zeitfehler"] .case-file::before{border-color:rgba(233,238,233,.22);border-radius:0}
+body[data-game="zeitfehler"] .case-file::after{border-color:rgba(233,238,233,.08);border-radius:0}
+body[data-game="zeitfehler"] h1,body[data-game="zeitfehler"] h2,body[data-game="zeitfehler"] .eyebrow,body[data-game="zeitfehler"] .status,body[data-game="zeitfehler"] footer,body[data-game="zeitfehler"] label{color:#f0f4f0;font-family:Consolas,"Courier New",monospace}
+body[data-game="zeitfehler"] h1{font-size:clamp(31px,7vw,53px);letter-spacing:-.035em}
+body[data-game="zeitfehler"] .story,body[data-game="zeitfehler"] .case-number{color:#abb5ae}
+body[data-game="zeitfehler"] .classification{color:#0a0d0b;background:#eef3ee;border:0;transform:none}
+body[data-game="zeitfehler"] .theme-emblem{border-radius:0;border-color:#eef3ee;background-image:url("assets/zeitfehler-cover.png");filter:grayscale(1) contrast(1.2);box-shadow:5px 5px 0 rgba(238,243,238,.18)}
+body[data-game="zeitfehler"] .theme-emblem::after{border-radius:0;border-color:rgba(0,0,0,.4)}
+body[data-game="zeitfehler"] .status{border-color:#4d5550;color:#b6c0b9}
+body[data-game="zeitfehler"] #typeLabel{color:#fff}
+body[data-game="zeitfehler"] .progress{height:8px;border:1px solid #69736c;background:#111613}
+body[data-game="zeitfehler"] .progress span{background:repeating-linear-gradient(90deg,#e9eee9 0 7px,transparent 7px 11px)}
+body[data-game="zeitfehler"] .puzzle-sheet,body[data-game="zeitfehler"] .opening-terminal,body[data-game="zeitfehler"] .story-terminal,body[data-game="zeitfehler"] .finale{position:relative;margin-top:8px;padding:clamp(20px,5vw,31px);color:#e9eee9;background:#080c0a;border:1px solid #9da69f;border-left:7px solid #e9eee9;box-shadow:inset 0 0 34px rgba(240,255,244,.035),8px 8px 0 rgba(233,238,233,.08)}
+body[data-game="zeitfehler"] .puzzle-sheet::after,body[data-game="zeitfehler"] .opening-terminal::after,body[data-game="zeitfehler"] .story-terminal::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(255,255,255,.025) 4px 5px)}
+body[data-game="zeitfehler"] .puzzle-sheet h2,body[data-game="zeitfehler"] .opening-terminal h2,body[data-game="zeitfehler"] .story-terminal h2,body[data-game="zeitfehler"] .finale h2{color:#f6faf6;font-family:Consolas,"Courier New",monospace;text-transform:uppercase}
+body[data-game="zeitfehler"] #prompt,body[data-game="zeitfehler"] .opening-terminal p,body[data-game="zeitfehler"] .story-terminal p,body[data-game="zeitfehler"] .finale p{color:#c6cec8;line-height:1.6}
+body[data-game="zeitfehler"] input{color:#f4f8f4;background:#020403;border:2px solid #dce3dd;border-radius:0;box-shadow:none}
+body[data-game="zeitfehler"] input:focus-visible{border-color:#fff;box-shadow:0 0 0 3px rgba(239,245,240,.18)}
+body[data-game="zeitfehler"] button:not(.back-menu){color:#080b09;background:#e9eee9;border:2px solid #fff;border-radius:0;box-shadow:4px 4px 0 #59615b}
+body[data-game="zeitfehler"] button:not(.back-menu):hover{background:#fff}
+body[data-game="zeitfehler"] .back-menu{color:#b8c2ba}
+body[data-game="zeitfehler"] .ok{color:#fff}body[data-game="zeitfehler"] .bad{color:#ff8f8f}
+body[data-game="zeitfehler"] footer{color:#8f9992;border-color:#48504a}body[data-game="zeitfehler"] footer span:last-child{color:#e9eee9}
+.terminal-kicker{margin:0 0 13px!important;color:#f3f7f3!important;font-weight:700;letter-spacing:.08em}
+.transmission{margin:20px 0;padding:16px;border:1px dashed #b6c0b8;background:rgba(255,255,255,.04)}.transmission strong{font-size:12px;letter-spacing:.1em}.transmission p{margin:9px 0 0!important}
+.story-check{display:grid;width:62px;height:62px;margin:5px 0 20px;place-items:center;color:#080b09;background:#edf2ed;font-size:38px;font-weight:700;animation:terminal-pop .45s ease both}
+.next-route{margin:22px 0 4px;padding:13px 14px;color:#f5f8f5;border:1px solid #69736c;font-size:13px;font-weight:700;letter-spacing:.055em}
+.ascii-finale{max-width:100%;margin:0 auto 24px;padding:24px 8px;overflow:hidden;color:#f4f8f4;border:1px solid #9da69f;background:#020403;font:clamp(8px,2vw,15px)/1.45 Consolas,monospace;text-align:center;animation:portal-pulse 1.6s ease-in-out infinite alternate}
+.finale--zeitfehler .success-stamp{color:#f1f5f1;border-color:#f1f5f1;border-radius:0;transform:none;animation:terminal-pop .55s .4s both}
+.finale--zeitfehler .celebration i{background:#e9eee9!important;width:7px;height:7px}
+.secondary-action{color:#e9eee9!important;background:transparent!important;box-shadow:none!important}
+@keyframes terminal-pop{from{opacity:0;transform:scale(1.45)}to{opacity:1;transform:none}}
+@keyframes portal-pulse{from{box-shadow:inset 0 0 8px rgba(255,255,255,.08);text-shadow:0 0 1px #fff}to{box-shadow:inset 0 0 34px rgba(255,255,255,.14);text-shadow:0 0 8px #fff}}
+
 .back-menu{width:auto;min-height:0;margin:0 0 13px;padding:3px 0;border:0;color:#63594b;background:transparent!important;box-shadow:none!important;font-family:"Oswald",sans-serif;font-size:11px;letter-spacing:.1em;text-align:left}
 .back-menu::before{display:none}.back-menu:hover{color:var(--stamp);transform:none}.back-menu:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 body[data-game="drache"] .back-menu{color:#6e4c2f}
 .finale--drache{background:radial-gradient(circle at 50% 0,rgba(218,164,68,.13),transparent 34%),linear-gradient(155deg,rgba(245,226,185,.95),rgba(216,188,139,.95));border-color:#a67931}
 
+@media(max-width:900px) and (min-width:761px){.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card--zeitfehler{grid-column:1/-1;max-width:50%;justify-self:center}}
 @media(max-width:760px){body[data-game="menu"] .shell{width:100%}.game-grid{grid-template-columns:1fr}.game-card{min-height:0}.card-art{height:180px}.card-description{min-height:0}.menu-heading{margin-top:27px}}
 @media(max-width:520px){.theme-emblem{width:55px}.menu-heading h2{font-size:27px}.menu-heading p{font-size:13px}.game-card{border-radius:8px}.card-art{height:150px}.card-content{padding:2px 17px 18px}.card-content strong{font-size:25px}.game-card--drache .card-content strong{font-size:22px}.card-meta span{font-size:9px}body[data-game="menu"] .case-file{padding-bottom:25px}}
+
+/* ---------- Archivwerkzeuge, Downloads und Notfallzugang ---------- */
+.archive-tools{margin-top:28px;padding:22px;border:1px solid rgba(217,183,115,.32);background:rgba(4,12,18,.62);box-shadow:inset 0 0 32px rgba(196,155,80,.035)}
+.archive-tools__head{display:flex;align-items:center;justify-content:space-between;gap:20px}.archive-tools h3{margin:5px 0 0;color:#f2e4c3;font-family:"Oswald",sans-serif;font-size:23px;text-transform:uppercase;letter-spacing:.03em}
+.emergency-button{width:auto;min-height:44px;margin:0;padding:10px 15px;color:#f7e3d3;background:linear-gradient(180deg,#8d3031,#5f191d);border-color:#c98262;font-size:12px;white-space:nowrap}
+.download-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.download-card{display:flex;min-width:0;padding:13px;align-items:center;gap:11px;color:#e8ddc7;border:1px solid rgba(211,172,94,.25);background:rgba(255,255,255,.035);text-decoration:none;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.download-card:hover{color:#fff3d8;border-color:#d4aa59;background:rgba(255,255,255,.075);transform:translateY(-2px)}.download-card>span:first-child{font-size:27px;color:#e7be6a}.download-card strong,.download-card small{display:block}.download-card strong{overflow:hidden;font-family:"Oswald",sans-serif;font-size:13px;line-height:1.12;text-overflow:ellipsis}.download-card small{margin-top:4px;color:#aeb8b9;font-size:9px;line-height:1.25}
+.emergency-dialog{width:min(580px,calc(100% - 24px));max-height:calc(100svh - 30px);padding:0;color:#172129;background:#e9dfca;border:1px solid #bd9d60;border-radius:5px;box-shadow:0 28px 90px rgba(0,0,0,.8)}.emergency-dialog::backdrop{background:rgba(0,5,8,.82);backdrop-filter:blur(4px)}
+.emergency-dialog__inner{position:relative;padding:clamp(24px,6vw,42px);background:repeating-linear-gradient(0deg,rgba(74,53,28,.025) 0 1px,transparent 1px 5px),linear-gradient(145deg,#f2ead9,#d9c9ac)}
+.emergency-dialog h2{margin-bottom:16px}.emergency-dialog p{line-height:1.55}.emergency-dialog .terminal-kicker{color:#8b2524!important}.emergency-dialog label{color:#343b3e}.emergency-dialog input,.emergency-dialog select{width:100%;background:#fffaf0}.emergency-dialog button{background:linear-gradient(180deg,#17384b,#0b2636)}
+.dialog-close{position:absolute;z-index:2;right:15px;top:12px;width:42px;min-height:42px;margin:0;padding:0;color:#513f2e!important;background:transparent!important;border:0!important;box-shadow:none!important;font:32px/1 Arial,sans-serif!important;letter-spacing:0!important}
+.solution-card{min-height:190px;margin-top:18px;padding:22px;border:1px solid #8f816c;background:rgba(255,253,245,.65);box-shadow:inset 0 0 20px rgba(60,42,24,.08)}.solution-card h3{margin:4px 0 18px;font-family:"Oswald",sans-serif;font-size:27px;text-transform:uppercase}.solution-progress{margin:0;color:#7c2827;font-family:"Oswald",sans-serif;font-size:11px;font-weight:700;letter-spacing:.13em}.solution-answer{display:grid;min-height:68px;padding:14px;place-items:center;color:#71685c;border:1px dashed #9a8c78;text-align:center}.solution-answer.is-revealed{color:#fff7e8;background:#152f3f;border-style:solid;font-size:16px}.solution-answer strong{font-size:clamp(24px,7vw,36px);letter-spacing:.08em}.solution-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.solution-actions button{min-width:0}.emergency-dialog .secondary-action{color:#26343b!important;background:transparent!important;border-color:#796b57!important;box-shadow:none!important}
+@media(max-width:760px){.download-grid{grid-template-columns:1fr}.archive-tools__head{align-items:flex-start;flex-direction:column}.emergency-button{width:100%}}
+@media(max-width:520px){.archive-tools{margin-inline:-5px;padding:17px}.solution-actions{grid-template-columns:1fr}.emergency-dialog__inner{padding:29px 18px 22px}}
