@@ -2,7 +2,7 @@ const games = {
   demo: {
     name: 'Akte Nachtlicht', menuLabel: 'Nautischer Kriminalfall',
     description: 'Ein erloschener Leuchtturm, alte Logbücher und eine Spur durch die Dunkelheit.',
-    cover: 'assets/nachtlicht-lighthouse.png', printFile: 'downloads/akte-nachtlicht-druckbilder.zip', meta: ['3 Rätsel', 'ca. 60 Min.', 'Mittel'],
+    cover: 'assets/nachtlicht-lighthouse.png', printFile: 'downloads/akte-nachtlicht-druckbilder.zip', pageAssets: { folder: 'assets/nachtlicht/seiten', prefix: 'Akte-Nachtlicht-Seite-' }, meta: ['3 Rätsel', 'ca. 60 Min.', 'Mittel'],
     caseNumber: 'NL–0047', classification: 'GEHEIM', theme: { accent: '#c29b54', mode: 'nachtlicht' },
     story: 'Drei Rätsel trennen euch von der Wahrheit. Beginnt mit der angegebenen Druckseite.',
     puzzles: [{ page: 4, answer: '4827', inputMode: 'numeric' }, { page: 5, answer: 'MOND' }, { page: 6, answer: 'LEUCHTTURM' }],
@@ -11,16 +11,16 @@ const games = {
   drache: {
     name: 'Der verschwundene Drache', menuLabel: 'Königliche Drachenakte',
     description: 'Findet Fyrion, bevor die letzte Glut des Königreichs erlischt.',
-    cover: 'assets/dragon-citadel.png', printFile: 'downloads/der-verschwundene-drache-druckbilder.zip', meta: ['7 Rätsel', '90–120 Min.', 'Anspruchsvoll'],
+    cover: 'assets/dragon-citadel.png', printFile: 'downloads/der-verschwundene-drache-druckbilder.zip', pageAssets: { folder: 'assets/drache/seiten', prefix: 'Der-verschwundene-Drache-Seite-' }, meta: ['7 Rätsel', '90–120 Min.', 'Anspruchsvoll'],
     caseNumber: 'DR–0712', classification: 'KÖNIGLICH', theme: { accent: '#d6a54a', mode: 'drache' },
     story: 'Folgt Fyrions Spur. Der Decoder nennt euch immer nur die nächste Seite.',
-    puzzles: [{ page: 3, answer: 'DRACO' }, { page: 6, answer: 'FEUER' }, { page: '4 + 9', answer: '27491', inputMode: 'numeric', plural: true }, { page: 5, answer: 'GOLD' }, { page: 10, answer: 'OST' }, { page: 7, answer: 'NEST' }, { page: 11, answer: 'FYRION' }],
+    puzzles: [{ page: 3, answer: 'DRACO' }, { page: 6, answer: 'FEUER' }, { page: '4 + 9', imagePages: [4,9], answer: '27491', inputMode: 'numeric', plural: true }, { page: 5, answer: 'GOLD' }, { page: 10, answer: 'OST' }, { page: 7, answer: 'NEST' }, { page: 11, answer: 'FYRION' }],
     finale: { kicker: 'Die letzte Glut erwacht', title: 'Fyrion antwortet!', text: 'Ihr habt den verschwundenen Drachen gefunden. Öffnet jetzt Seite 12 und entdeckt, welches Geheimnis er bewacht.', stamp: 'DRACHE<br>GEFUNDEN', image: 'assets/dragon-finale.png' }
   },
   zeitfehler: {
     name: 'ZEITFEHLER // NULLWALD', menuLabel: 'Chrono-Hackerakte',
     description: 'Eine Hackerin aus 2049, ein beschädigtes Jahr 1427 und Wesen zwischen Mythos und ASCII.',
-    cover: 'assets/zeitfehler-cover.png', printFile: 'downloads/zeitfehler-nullwald-druckbilder.zip', meta: ['15 Rätsel', '120–150 Min.', 'Schwer'],
+    cover: 'assets/zeitfehler-cover.png', printFile: 'downloads/zeitfehler-nullwald-druckbilder.zip', pageAssets: { folder: 'assets/zeitfehler/seiten', prefix: 'Zeitfehler-Nullwald-Seite-' }, meta: ['15 Rätsel', '120–150 Min.', 'Schwer'],
     caseNumber: 'ZX–1427', classification: 'ZEITKNOTEN', theme: { accent: '#e5e5e5', mode: 'zeitfehler' },
     story: 'Der Chronowurm überschreibt die Vergangenheit. Repariert den Zeitkern, bevor beide Welten verschwinden.',
     opening: [
@@ -39,11 +39,11 @@ const games = {
       { page: 6, no: 8, answer: '2718', inputMode: 'numeric', praise: 'Lichtsignal synchron.', beat: 'Vier Ziffern schalten Novas beschädigten Scanner frei. Er zeigt sechs Fragmente eines Wesens — aber ihre Reihenfolge wurde überschrieben.' },
       { page: 9, no: 9, answer: 'GREIF', praise: 'Fragmentdatei rekonstruiert.', beat: 'Die Greifin erkennt ihr Bild und gibt einen Zahlenstrom frei. Ein alter Systemschlüssel kann ihn in ein Wort übersetzen.' },
       { page: 10, no: 10, answer: 'BYTE', praise: 'Zahlenbus entschlüsselt.', beat: 'BYTE öffnet eine neue Speicherschicht. Nova warnt: Die beiden übrigen Zeilen auf Seite 10 werden später noch gebraucht. Jetzt erscheint ein Trägertext ohne Sinn.' },
-      { page: 13, no: 11, answer: 'PORTAL', praise: 'Die Maske sitzt exakt.', beat: 'PORTAL reißt sechs helle Löcher in die falsche Zeitlinie. Dahinter liegen zwei fast identische Welten — nur acht Zeichen wurden manipuliert.' },
+      { page: 13, no: 11, answer: 'PORTAL', relatedPages: [12], praise: 'Die Maske sitzt exakt.', beat: 'PORTAL reißt sechs helle Löcher in die falsche Zeitlinie. Dahinter liegen zwei fast identische Welten — nur acht Zeichen wurden manipuliert.' },
       { page: 7, no: 12, answer: '8', inputMode: 'numeric', praise: 'Alle acht Zeitfehler gefunden.', beat: 'Der Chronowurm verliert seine Tarnung und sendet eine letzte Nummer. Natürlich läuft auch sie in die falsche Richtung.' },
       { page: 7, no: 13, answer: '641', inputMode: 'numeric', praise: 'Richtung korrigiert.', beat: 'Nova erreicht den Mehrfachkernel. Drei Quellen sind vorhanden, doch ohne die richtige Reihenfolge bleibt das Ergebnis unlesbar.' },
-      { page: 14, no: 14, answer: 'NODE', praise: 'Kernel-Knoten geöffnet.', beat: 'NODE gewährt Root-Zugriff. Nur ein letzter Befehl fehlt. Nova erinnert sich an ein kaum sichtbares Detail auf dem Titelblatt — etwas, das erst kopfüber lesbar wird.', transmission: 'KERNEL-HINWEIS // Übertragt zuerst Zeile C von Seite 10. Wendet dann positionsweise die Operatoren aus Zeile B an. Die Bedeutung der Operatoren steht auf Seite 3.' },
-      { page: 15, no: 15, answer: 'RESET', praise: 'Root-Befehl akzeptiert.', beat: 'Der Chronowurm zerfällt in harmlose Zeichen. Vergangenheit und Zukunft beginnen, sich neu zu schreiben.' }
+      { page: 14, no: 14, answer: 'NODE', relatedPages: [10,3], praise: 'Kernel-Knoten geöffnet.', beat: 'NODE gewährt Root-Zugriff. Nur ein letzter Befehl fehlt. Nova erinnert sich an ein kaum sichtbares Detail auf dem Titelblatt — etwas, das erst kopfüber lesbar wird.', transmission: 'KERNEL-HINWEIS // Übertragt zuerst Zeile C von Seite 10. Wendet dann positionsweise die Operatoren aus Zeile B an. Die Bedeutung der Operatoren steht auf Seite 3.' },
+      { page: 15, no: 15, answer: 'RESET', relatedPages: [1], praise: 'Root-Befehl akzeptiert.', beat: 'Der Chronowurm zerfällt in harmlose Zeichen. Vergangenheit und Zukunft beginnen, sich neu zu schreiben.' }
     ],
     finale: {
       kicker: 'ZEITKERN // SYNCHRON', title: 'ROOT-ZUGRIFF ERTEILT', sound: true,
@@ -55,7 +55,7 @@ const games = {
   geisterhaus: {
     name: 'Das verlassene Geisterhaus', menuLabel: 'Paranormale Hausakte',
     description: 'Zwei Stockwerke, verriegelte Zimmer und eine Stimme, die seit 1899 auf ihre Befreiung wartet.',
-    cover: 'assets/geisterhaus-cover.jpg', printFile: 'downloads/geisterhaus-druckbilder.zip', meta: ['15 Rätsel', '150–180 Min.', 'Sehr schwer'],
+    cover: 'assets/geisterhaus-cover.jpg', printFile: 'downloads/geisterhaus-druckbilder.zip', pageAssets: { folder: 'assets/geisterhaus/seiten', prefix: 'Geisterhaus-Seite-' }, meta: ['15 Rätsel', '150–180 Min.', 'Sehr schwer'],
     caseNumber: 'AG–1899', classification: 'NICHT BETRETEN', theme: { accent: '#d8d8d3', mode: 'geisterhaus' },
     story: 'Haus Amselgrund ordnet seine Zimmer neu. Der Decoder ist eure einzige Verbindung zu Mara — und zu der Stimme im Gemäuer.',
     openingTitle: 'MARA WINTER // HAUS AMSELGRUND',
@@ -93,27 +93,82 @@ const games = {
 let game, gameId, step = 0, audioContext, emergencyStep = 0;
 const $ = id => document.getElementById(id);
 const norm = value => value.trim().toUpperCase().replace(/\s+/g, '').replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE');
-const viewerWarnings = [
-  'Manche Türen sollten geschlossen bleiben. Diese hier vermutlich auch.',
-  'Der Hausplan verändert sich gern, sobald jemand genauer hinsieht.',
-  'Das Kinderzimmer schaut zurück. Nur damit ihr gewarnt seid.',
-  'Im Glas erscheint manchmal eine Person mehr als davorsteht.',
-  'Ein Buch wurde zuletzt von innen zugeschlagen.',
-  'Das Klavier spielt weiter, wenn längst niemand mehr im Raum ist.',
-  'Aus der Küche hört man Besteck für einen zusätzlichen Gast.',
-  'Im Keller wartet etwas geduldig am Ende jedes falschen Weges.',
-  'Die Kälte auf dem Bild stammt nicht von eurem Bildschirm.',
-  'Nicht jeder Stern über Amselgrund gehört an den Himmel.',
-  'Beim letzten Falten hat jemand auf der anderen Seite geatmet.',
-  'Die Erinnerung bemerkt, wenn sie miteinander verglichen wird.',
-  'Auf dem Familienbild fehlt angeblich niemand. Angeblich.',
-  'Durch manche ausgeschnittenen Fenster sieht man mehr als Buchstaben.',
-  'Das Titelblatt kennt euren Namen noch nicht. Lasst es dabei.'
-];
+const helpLibrary = {
+  demo: [
+    { taunt: 'Der Leuchtturm zählt schneller als ihr.', hint: 'Bearbeitet die vier kleinen Rechnungen einzeln und übertragt die Ergebnisse in der gedruckten Reihenfolge.' },
+    { taunt: 'Der Mond steht schon eine Weile da. Er wartet nicht ewig.', hint: 'Achtet auf die wiederkehrenden Begriffe und darauf, was am Himmel den Weg des Lichts begleitet.' },
+    { taunt: 'Selbst die Möwen haben die Verschiebung inzwischen verstanden.', hint: 'Jeder Buchstabe wurde gleich weit verschoben. Geht im Alphabet drei Stellen zurück.' }
+  ],
+  drache: [
+    { taunt: 'Ein Hofkartograf hätte das vor dem Frühstück gefunden.', hint: 'Lest die angegebenen Koordinaten als Spalte und Zeile auf der Sternenkarte.' },
+    { taunt: 'Die Runen glühen vor Ungeduld. Oder vor Fremdscham.', hint: 'Vergleicht jedes Zeichen mit dem Runenschlüssel. Die Reihenfolge der Zeichen bleibt unverändert.' },
+    { taunt: 'Fyrion zählt seine Eier offenbar genauer als ihr.', hint: 'Legt beide Galerien nebeneinander. Notiert nur die Ziffern unter den veränderten Eiern in Leserichtung.' },
+    { taunt: 'Drei Truhen, drei Wächter und trotzdem bewacht ihr gerade nur eure Ratlosigkeit.', hint: 'Prüft jede Truhe einzeln als möglichen Fundort. Gültig ist nur der Fall, bei dem genau eine Wächteraussage wahr ist.' },
+    { taunt: 'Ein Drache braucht keinen Kompass. Ihr anscheinend schon.', hint: 'Übertragt die Wegmarken auf die Karte und achtet am Endpunkt auf die Himmelsrichtung.' },
+    { taunt: 'Das Nest ist warm. Eure Spur leider eiskalt.', hint: 'Sortiert die Hinweise nach der vorgegebenen Symbolfolge, nicht nach ihrer Position auf dem Blatt.' },
+    { taunt: 'Die letzte Glut flackert. Sie ist nicht für endloses Raten gemacht.', hint: 'Lest die gesammelten Siegelbuchstaben in genau der Reihenfolge, in der ihr die Seiten tatsächlich besucht habt.' }
+  ],
+  zeitfehler: [
+    { taunt: 'ERROR 01: Aufmerksamkeit nicht gefunden.', hint: 'Die Nachricht sitzt an derselben Stelle mehrerer ausgewählter Zeilen. Beginnt ganz vorne.' },
+    { taunt: 'CACHE MISS. Den Text habt ihr wirklich schon einmal gelesen.', hint: 'Die Zahlen verweisen auf Wörter im längeren Einführungstext. Lest sie als Zeile und Wortposition.' },
+    { taunt: 'Der Spiegel meldet: USER ORIENTATION INVALID.', hint: 'Nicht die Ziffern verändern, sondern ausschließlich ihre Leserichtung.' },
+    { taunt: 'Ein Jora hat das Zahlenraster bereits im Kopf gelöst.', hint: 'Vervollständigt zuerst das gesamte Sudoku. Erst danach zählen die besonders markierten Felder.' },
+    { taunt: 'ROUTE NOT FOUND. Piko wartet bereits am Ziel.', hint: 'Setzt jeden Schritt des Reiseberichts einzeln auf der Karte um und notiert nur die betretenen Zeichen.' },
+    { taunt: 'Selbst der Chronowurm findet gerade schneller durch das Labyrinth.', hint: 'Startet am markierten Eingang. Nur ein durchgehender Weg erreicht den Ausgang; sammelt seine Buchstaben.' },
+    { taunt: 'Die Wortleiter hat Sprossen. Benutzt sie.', hint: 'Die Antworten greifen jeweils mit einem Teil ineinander. Die markierten Felder ergeben erst am Ende das Lösungswort.' },
+    { taunt: 'PAPER_DRIVER antwortet nicht. Vielleicht wurde noch nicht gefaltet.', hint: 'Faltet exakt an den Linien und haltet das geschlossene Blatt gegen eine helle Lichtquelle.' },
+    { taunt: 'FRAGMENT ORDER CORRUPTED. Die Schere trifft keine Schuld.', hint: 'Schneidet an den Außenlinien und verbindet identische Kantenzeichen. Die großen Buchstaben bilden das Ergebnis.' },
+    { taunt: 'Die Zahlen sprechen ASCII. Ihr hört offenbar noch analog.', hint: 'Wandelt jede Zahl einzeln mit dem angegebenen Zahlen-zu-Buchstaben-Schlüssel um.' },
+    { taunt: 'MASK ALIGNMENT FAILED. Das Portal lacht binär.', hint: 'Legt Seite 13 deckungsgleich auf Seite 12. Richtet zuerst die markierten Ecken aus und lest nur durch die Öffnungen.' },
+    { taunt: 'Acht Fehler verstecken sich schlechter als euer letzter Versuch.', hint: 'Vergleicht die Bilder systematisch in Abschnitten: oben, Mitte, unten. Gesucht ist nur die Anzahl.' },
+    { taunt: 'Die Zeit läuft rückwärts. Eure Antwort leider seitwärts.', hint: 'Kehrt die Reihenfolge der gefundenen Ziffern vollständig um.' },
+    { taunt: 'KERNEL PANIC: Quellen in falscher Reihenfolge.', hint: 'Beginnt mit Zeile C von Seite 10. Wendet positionsweise die Operatoren aus Zeile B mit dem Schlüssel von Seite 3 an.' },
+    { taunt: 'ROOT-ZUGRIFF verweigert. Das Titelblatt weiß mehr als ihr.', hint: 'Dreht Seite 1 vollständig auf den Kopf. Die dort versteckten Indexzahlen wählen Buchstaben aus den zugehörigen Wörtern.' }
+  ]
+};
+const helpThemes = {
+  nachtlicht: { warning: 'Das Licht zeigt einen schmalen Weg. Wer ihn nimmt, gibt einen kleinen Teil der Entdeckung ab.', taunt: 'Der Leuchtturm schweigt. Noch.', hint: 'Prüft Überschrift, Reihenfolge und alle auffälligen Markierungen noch einmal.' },
+  drache: { warning: 'Der königliche Rat gestattet einen Hinweis — aber der Hofnarr wird davon erfahren.', taunt: 'Sogar ein schlafender Drache wäre näher an der Lösung.', hint: 'Vergleicht alle Symbole, Reihenfolgen und Verweise auf andere Seiten.' },
+  zeitfehler: { warning: 'WARNUNG // Das Hilfsprotokoll hinterlässt Spuren in der Zeitlinie.', taunt: 'SYSTEM: Eigenständiges Denken kurzzeitig offline.', hint: 'Prüft Eingabeformat, Leserichtung und alle Verweise auf frühere Daten.' },
+  geisterhaus: { warning: 'Das Haus wird es bemerken. Der Hinweis verrät die Lösung nicht, nimmt euch aber einen Teil der Ehre.', taunt: 'Das Haus hatte mit aufmerksameren Besuchern gerechnet.', hint: 'Untersucht den Raum erneut und achtet auf Reihenfolge, Richtung und wiederkehrende Zeichen.' },
+  default: { warning: 'Der Hinweis verrät die Lösung nicht, nimmt euch aber einen Teil der Entdeckung ab.', taunt: 'Das Archiv hat schon überzeugendere Ermittlungen gesehen.', hint: 'Prüft alle markierten Zeichen, die Reihenfolge und mögliche Verweise auf andere Seiten.' }
+};
+const viewerWarnings = {
+  nachtlicht: ['Das Licht vergrößert nicht nur die Wahrheit, sondern manchmal auch falsche Spuren.', 'Der Leuchtturmwärter nannte das Fernglas seinen letzten Ausweg.', 'Manche Details zeigen sich erst, wenn die Nacht ganz nah ist.'],
+  drache: ['Wer die Drachenakte öffnet, könnte von Fyrion persönlich beobachtet werden.', 'Die Hofmagier nennen das Vergrößerung. Drachen nennen es Schummeln.', 'Vorsicht: Manche Runen wirken aus der Nähe deutlich lebendiger.', 'Das königliche Archiv merkt sich jeden neugierigen Blick.'],
+  zeitfehler: ['VIEWPORT_OVERRIDE erkannt. Die Zeitlinie protokolliert diesen Zugriff.', 'ZOOM.exe wurde gestartet. Nebenwirkungen auf das Jahr 1427 unbekannt.', 'WARNUNG // Pixel können bei genauer Betrachtung zurückstarren.', 'Das Archivbild stammt möglicherweise aus einer Zukunft, die noch nicht existiert.'],
+  geisterhaus: [
+    'Manche Türen sollten geschlossen bleiben. Diese hier vermutlich auch.', 'Der Hausplan verändert sich gern, sobald jemand genauer hinsieht.',
+    'Das Kinderzimmer schaut zurück. Nur damit ihr gewarnt seid.', 'Im Glas erscheint manchmal eine Person mehr als davorsteht.',
+    'Ein Buch wurde zuletzt von innen zugeschlagen.', 'Das Klavier spielt weiter, wenn längst niemand mehr im Raum ist.',
+    'Aus der Küche hört man Besteck für einen zusätzlichen Gast.', 'Im Keller wartet etwas geduldig am Ende jedes falschen Weges.',
+    'Die Kälte auf dem Bild stammt nicht von eurem Bildschirm.', 'Nicht jeder Stern über Amselgrund gehört an den Himmel.',
+    'Beim letzten Falten hat jemand auf der anderen Seite geatmet.', 'Die Erinnerung bemerkt, wenn sie miteinander verglichen wird.',
+    'Auf dem Familienbild fehlt angeblich niemand. Angeblich.', 'Durch manche ausgeschnittenen Fenster sieht man mehr als Buchstaben.',
+    'Das Titelblatt kennt euren Namen noch nicht. Lasst es dabei.'
+  ],
+  default: ['Die Großansicht kann verborgene Einzelheiten sichtbar machen. Das Archiv führt Buch.']
+};
+const viewerLabels = {
+  nachtlicht: 'NAUTISCHES BILDARCHIV', drache: 'KÖNIGLICHES BILDARCHIV',
+  zeitfehler: 'VIEWPORT // PRINT_CACHE', geisterhaus: 'DIGITALES HAUSARCHIV', default: 'DIGITALES BILDARCHIV'
+};
 let pageZoom = 1;
 
 function pageImageSource(page) {
-  return `assets/geisterhaus/seiten/Geisterhaus-Seite-${String(page).padStart(2,'0')}.jpg`;
+  const config=game.pageAssets;
+  return `${config.folder}/${config.prefix}${String(page).padStart(2,'0')}.${config.extension||'jpg'}`;
+}
+
+function getPuzzleHelp(p) {
+  const theme=helpThemes[game.theme.mode]||helpThemes.default;
+  const specific=helpLibrary[gameId]?.[step]||{};
+  return { warning: theme.warning, taunt: p.taunt||specific.taunt||theme.taunt, hint: p.hint||specific.hint||theme.hint };
+}
+
+function getViewerWarning() {
+  const lines=viewerWarnings[game.theme.mode]||viewerWarnings.default;
+  return lines[step%lines.length];
 }
 
 function setPageZoom(value) {
@@ -125,16 +180,18 @@ function setPageZoom(value) {
 function selectPageImage(page) {
   const src=pageImageSource(page);
   $('pageDialogTitle').textContent=`Druckseite ${page}`;
-  $('pageImage').src=src; $('pageImage').alt=`Druckseite ${page} des Spiels Das verlassene Geisterhaus`;
-  $('pageDownload').href=src; $('pageDownload').setAttribute('download',`Geisterhaus-Seite-${String(page).padStart(2,'0')}.jpg`);
+  $('pageImage').src=src; $('pageImage').alt=`Druckseite ${page} des Spiels ${game.name}`;
+  $('pageDownload').href=src; $('pageDownload').setAttribute('download',`${game.pageAssets.prefix}${String(page).padStart(2,'0')}.jpg`);
   document.querySelectorAll('[data-page-tab]').forEach(tab=>tab.classList.toggle('is-active',Number(tab.dataset.pageTab)===Number(page)));
   setPageZoom(1); document.querySelector('.page-image-scroll').scrollTo(0,0);
 }
 
 function openPageDialog(pages,startPage) {
+  const selected=pages.includes(Number(startPage))?Number(startPage):pages[0];
+  document.querySelector('.page-dialog .terminal-kicker').textContent=viewerLabels[game.theme.mode]||viewerLabels.default;
   $('pageTabs').innerHTML=pages.map(page=>`<button type="button" data-page-tab="${page}"><span>Seite ${page}</span></button>`).join('');
   document.querySelectorAll('[data-page-tab]').forEach(tab=>tab.onclick=()=>selectPageImage(tab.dataset.pageTab));
-  selectPageImage(startPage); $('pageDialog').showModal();
+  selectPageImage(selected); $('pageDialog').showModal();
 }
 
 function buildMenu() {
@@ -206,8 +263,10 @@ function render() {
   const p=game.puzzles[step], numbered=p.no!==undefined;
   const pageText=numbered ? `Seite ${p.page} · Rätsel ${p.no}` : `Seite ${p.page}`;
   const prompt=p.plural ? `Gebt die gemeinsame Lösung der Seiten ${p.page} ein.` : `Gebt die Lösung von ${pageText} ein.`;
-  const imagePages=gameId==='geisterhaus'?[...new Set([p.page,...(p.relatedPages||[])])]:[];
-  const pageViewer=imagePages.length?`<div class="page-viewer"><button id="openPageWarning" class="page-viewer-button" type="button"><span>▣ Druckseite groß ansehen</span></button><div id="pageWarning" class="page-warning" hidden><strong>Ansicht wirklich öffnen?</strong><p>${viewerWarnings[step]}</p><small>Die Seite wird direkt in der App geöffnet. Zoomen könnte Dinge sichtbar machen, die auf dem Papier verborgen bleiben.</small><div class="hint-actions"><button id="confirmPageView" type="button"><span>Ja, Seite öffnen</span></button><button id="cancelPageView" class="secondary-action" type="button"><span>Lieber nicht</span></button></div></div></div>`:'';
+  const configuredPages=p.imagePages||[p.page,...(p.relatedPages||[])];
+  const imagePages=game.pageAssets?[...new Set(configuredPages.map(Number).filter(Number.isFinite))]:[];
+  const helper=getPuzzleHelp(p);
+  const pageViewer=imagePages.length?`<div class="page-viewer"><button id="openPageWarning" class="page-viewer-button" type="button"><span>▣ Druckseite groß ansehen</span></button><div id="pageWarning" class="page-warning" hidden><strong>Ansicht wirklich öffnen?</strong><p>${getViewerWarning()}</p><small>Die Seite wird direkt in der App geöffnet. Zoomen könnte Dinge sichtbar machen, die auf dem Papier verborgen bleiben.</small><div class="hint-actions"><button id="confirmPageView" type="button"><span>Ja, Seite öffnen</span></button><button id="cancelPageView" class="secondary-action" type="button"><span>Lieber nicht</span></button></div></div></div>`:'';
   const showPacket=p.transmission && (gameId!=='geisterhaus' || p.no===3 || p.no===10);
   $('stage').innerHTML=`<div class="status" aria-label="Rätselstatus"><span>Rätsel ${step+1} von ${game.puzzles.length}</span><span id="typeLabel">${pageText}</span></div>
     <div class="progress" aria-hidden="true"><span style="--progress:${((step+1)/game.puzzles.length)*100}%"></span></div>
@@ -216,13 +275,11 @@ function render() {
     ${pageViewer}
     <label for="answer">Eure Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="${p.inputMode||'text'}" placeholder="Code oder Lösungswort">
     <button id="check" type="button"><span>Prüfen</span></button><p id="message" aria-live="polite"></p>
-    ${p.hint?`<div class="hint-zone"><button id="openHint" class="hint-button" type="button"><span>☠ Kleine Hilfe anfordern</span></button><div id="hintWarning" class="hint-warning" hidden><strong>Wirklich Hilfe benutzen?</strong><p>Das Haus wird es bemerken. Der Hinweis verrät die Lösung nicht, nimmt euch aber einen Teil der Ehre.</p><div class="hint-actions"><button id="confirmHint" type="button"><span>Ja, Hinweis zeigen</span></button><button id="cancelHint" class="secondary-action" type="button"><span>Nein, weitergrübeln</span></button></div></div><div id="hintReveal" class="hint-reveal" hidden><strong>${p.taunt}</strong><p>${p.hint}</p></div></div>`:''}</div>`;
+    <div class="hint-zone"><button id="openHint" class="hint-button" type="button"><span>☠ Kleine Hilfe anfordern</span></button><div id="hintWarning" class="hint-warning" hidden><strong>Wirklich Hilfe benutzen?</strong><p>${helper.warning}</p><div class="hint-actions"><button id="confirmHint" type="button"><span>Ja, Hinweis zeigen</span></button><button id="cancelHint" class="secondary-action" type="button"><span>Nein, weitergrübeln</span></button></div></div><div id="hintReveal" class="hint-reveal" hidden><strong>${helper.taunt}</strong><p>${helper.hint}</p></div></div></div>`;
   $('check').onclick=check; $('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()});
-  if(p.hint){
-    $('openHint').onclick=()=>{$('openHint').hidden=true;$('hintWarning').hidden=false;$('confirmHint').focus()};
-    $('cancelHint').onclick=()=>{$('hintWarning').hidden=true;$('openHint').hidden=false;$('openHint').focus()};
-    $('confirmHint').onclick=()=>{$('hintWarning').hidden=true;$('hintReveal').hidden=false};
-  }
+  $('openHint').onclick=()=>{$('openHint').hidden=true;$('hintWarning').hidden=false;$('confirmHint').focus()};
+  $('cancelHint').onclick=()=>{$('hintWarning').hidden=true;$('openHint').hidden=false;$('openHint').focus()};
+  $('confirmHint').onclick=()=>{$('hintWarning').hidden=true;$('hintReveal').hidden=false};
   if(imagePages.length){
     $('openPageWarning').onclick=()=>{$('openPageWarning').hidden=true;$('pageWarning').hidden=false;$('confirmPageView').focus()};
     $('cancelPageView').onclick=()=>{$('pageWarning').hidden=true;$('openPageWarning').hidden=false;$('openPageWarning').focus()};

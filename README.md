@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v12
+# Escape-Archiv · Decoder v13
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -15,9 +15,11 @@ ZIP entpacken und den gesamten Inhalt in das bestehende GitHub-Repository hochla
 
 Das Geisterhaus besitzt 15 Stationen in zwei Stockwerken, eine längere Einleitung, Story-Fortschritt nach jeder richtigen Antwort, zwei in der App ladbare Prüfbilder sowie eine animierte Abschlusssequenz mit unheimlichem, synthetischem Erfolgssignal. Der Ton wird erst nach einer Eingabe aktiviert und kann im Finale wiederholt werden.
 
-Jede Geisterhaus-Station besitzt außerdem eine freiwillige kleine Hilfe. Vor dem Öffnen erscheint eine Warnung; danach folgen ein eigener frecher Kommentar und ein Hinweis, der die Lösung nicht direkt verrät.
+Jede Station in allen vier Spielen besitzt eine freiwillige kleine Hilfe. Vor dem Öffnen erscheint eine Warnung; danach folgen ein thematisch passender frecher Kommentar und ein Hinweis, der die Lösung nicht direkt verrät.
 
-Bei jedem Geisterhaus-Rätsel lässt sich die benötigte Druckseite nach einer gruseligen Sicherheitsabfrage direkt in der App öffnen, stufenweise vergrößern und auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an. Hinweise auf das nächste Ziel erscheinen erst nach einer richtigen Lösung.
+Bei jedem Rätsel lässt sich die benötigte Druckseite nach einer zum Spiel passenden Sicherheitsabfrage direkt in der App öffnen, stufenweise vergrößern und auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an. Hinweise auf das nächste Ziel erscheinen beim Geisterhaus erst nach einer richtigen Lösung.
+
+Die Hilfe und Großansicht sind als gemeinsame Decoder-Funktionen aufgebaut. Neue Spiele erhalten automatisch eine Standardhilfe; für eine vollständig angepasste Version werden nur ein Themenprofil, ein Druckseiten-Pfad und bei Bedarf einzelne Rätselhinweise ergänzt.
 
 ## Drucksatz
 
