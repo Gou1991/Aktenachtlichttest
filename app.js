@@ -1,14 +1,109 @@
-const games={
-  demo:{name:'Akte Nachtlicht',theme:{accent:'#c29b54',mode:'nachtlicht'},story:'Demo-Spiel: Drei kleine Decoder zeigen die Grundidee der späteren Escape-App.',puzzles:[
-    {type:'Zahlencode',title:'Das Schloss',prompt:'Auf dem Zettel stehen die Zahlen 4 · 8 · 2 · 7. Gib den vierstelligen Code ein.',answer:'4827',hint:'Lies die Zahlen einfach von links nach rechts.',inputMode:'numeric'},
-    {type:'Lösungswort',title:'Die Nachricht',prompt:'„Ich leuchte nachts, bin aber keine Lampe. Manchmal bin ich voll.“',answer:'MOND',hint:'Schau in den Nachthimmel.'},
-    {type:'Caesar',title:'Terminal 03',prompt:'Entschlüssele mit einer Verschiebung von 3 zurück: OHXFKWWXUP',answer:'LEUCHTTURM',hint:'L → O bei +3. Zum Entschlüsseln also drei Buchstaben zurück.',caesar:true}
-  ]},
-  lab:{name:'Labor 47',theme:{accent:'#b6a65b',mode:'labor'},story:'Zweite Theme-Demo. Später bekommt jedes echte Spiel seine eigene Konfiguration.',puzzles:[{type:'Lösungswort',title:'Notstrom',prompt:'Gib das Testwort ENERGIE ein.',answer:'ENERGIE',hint:'Das Lösungswort steht bereits im Auftrag.'}]}
+const games = {
+  demo: {
+    name: 'Akte Nachtlicht',
+    theme: { accent: '#c29b54', mode: 'nachtlicht' },
+    story: 'Gebt hier nacheinander eure gefundenen Lösungen ein.',
+    puzzles: [
+      { page: 4, answer: '4827', inputMode: 'numeric' },
+      { page: 5, answer: 'MOND' },
+      { page: 6, answer: 'LEUCHTTURM' }
+    ]
+  },
+  lab: {
+    name: 'Labor 47',
+    theme: { accent: '#b6a65b', mode: 'labor' },
+    story: 'Gebt hier eure gefundene Lösung ein.',
+    puzzles: [{ page: 1, answer: 'ENERGIE' }]
+  }
 };
-let game,step=0;const $=id=>document.getElementById(id);const norm=s=>s.trim().toUpperCase().replace(/\s+/g,'');
-function fillGames(){Object.entries(games).forEach(([id,g])=>{let o=document.createElement('option');o.value=id;o.textContent=g.name;$('gameSelect').append(o)});const q=new URLSearchParams(location.search).get('game');if(q&&games[q]){$('gameSelect').value=q;start(q)}}
-function start(id){game=games[id];step=0;document.documentElement.style.setProperty('--accent',game.theme.accent);document.body.dataset.game=game.theme.mode;$('title').textContent=game.name;$('story').textContent=game.story;$('selectWrap').hidden=true;$('decoder').hidden=false;render()}
-function render(){const p=game.puzzles[step];$('stepLabel').textContent=`Rätsel ${step+1}/${game.puzzles.length}`;$('typeLabel').textContent=p.type;$('puzzleTitle').textContent=p.title;$('prompt').textContent=p.prompt;$('hint').textContent=p.hint;$('progressBar').style.setProperty('--progress',`${((step+1)/game.puzzles.length)*100}%`);$('answer').value='';$('answer').inputMode=p.inputMode||'text';$('message').textContent='';$('message').className='';$('hintBox').open=false;$('toolArea').innerHTML=p.caesar?'<div class="caesar"><output>Caesar-Hilfe: A→D, B→E, C→F …</output></div>':'';$('answer').focus({preventScroll:true})}
-function check(){const p=game.puzzles[step];if(norm($('answer').value)===norm(p.answer)){$('message').textContent='✓ Richtig – Zugriff freigegeben.';$('message').className='ok';setTimeout(()=>{if(step<game.puzzles.length-1){step++;render()}else{$('decoder').innerHTML='<div class="status"><span>MISSION COMPLETE</span><span>AKTE GESCHLOSSEN</span></div><div class="progress"><span style="--progress:100%"></span></div><div class="puzzle-sheet"><div class="paper-clip" aria-hidden="true"></div><h2>Geschafft!</h2><p class="story">Alle Demo-Rätsel wurden gelöst. Die Engine funktioniert.</p><button type="button" onclick="location.href=location.pathname"><span>Zur Spielauswahl</span></button></div>'}},650)}else{$('message').textContent='✕ Code nicht akzeptiert.';$('message').className='bad'}}
-$('loadGame').onclick=()=>start($('gameSelect').value);$('check').onclick=check;$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()});fillGames();
+
+let game;
+let step = 0;
+const $ = id => document.getElementById(id);
+const norm = value => value.trim().toUpperCase().replace(/\s+/g, '');
+
+function fillGames() {
+  Object.entries(games).forEach(([id, entry]) => {
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = entry.name;
+    $('gameSelect').append(option);
+  });
+
+  const requestedGame = new URLSearchParams(location.search).get('game');
+  if (requestedGame && games[requestedGame]) {
+    $('gameSelect').value = requestedGame;
+    start(requestedGame);
+  }
+}
+
+function start(id) {
+  game = games[id];
+  step = 0;
+  document.documentElement.style.setProperty('--accent', game.theme.accent);
+  document.body.dataset.game = game.theme.mode;
+  $('title').textContent = game.name;
+  $('story').textContent = game.story;
+  $('selectWrap').hidden = true;
+  $('decoder').hidden = false;
+  render();
+}
+
+function render() {
+  const puzzle = game.puzzles[step];
+  $('stepLabel').textContent = `Rätsel ${step + 1} von ${game.puzzles.length}`;
+  $('typeLabel').textContent = `Seite ${puzzle.page}`;
+  $('puzzleTitle').textContent = `Seite ${puzzle.page}`;
+  $('prompt').textContent = `Gebt die Lösung von Seite ${puzzle.page} ein.`;
+  $('progressBar').style.setProperty('--progress', `${((step + 1) / game.puzzles.length) * 100}%`);
+  $('answer').value = '';
+  $('answer').inputMode = puzzle.inputMode || 'text';
+  $('message').textContent = '';
+  $('message').className = '';
+  $('answer').focus({ preventScroll: true });
+}
+
+function showFinale() {
+  $('decoder').innerHTML = `
+    <section class="finale" aria-labelledby="finaleTitle">
+      <div class="celebration" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="final-lighthouse" aria-hidden="true">
+        <span class="final-beam"></span><span class="final-lantern"></span>
+        <span class="final-tower"></span><span class="final-rocks"></span>
+      </div>
+      <p class="final-kicker">Das Licht ist zurück</p>
+      <h2 id="finaleTitle">Ihr habt es geschafft!</h2>
+      <p>Alle Rätsel sind gelöst und die Akte Nachtlicht ist abgeschlossen.</p>
+      <div class="success-stamp">MISSION<br>ERFOLGREICH</div>
+      <button type="button" onclick="location.href=location.pathname"><span>Noch einmal spielen</span></button>
+    </section>`;
+}
+
+function check() {
+  const puzzle = game.puzzles[step];
+  if (norm($('answer').value) === norm(puzzle.answer)) {
+    $('message').textContent = '✓ Richtig';
+    $('message').className = 'ok';
+    setTimeout(() => {
+      if (step < game.puzzles.length - 1) {
+        step++;
+        render();
+      } else {
+        showFinale();
+      }
+    }, 650);
+  } else {
+    $('message').textContent = '✕ Noch nicht richtig';
+    $('message').className = 'bad';
+  }
+}
+
+$('loadGame').onclick = () => start($('gameSelect').value);
+$('check').onclick = check;
+$('answer').addEventListener('keydown', event => {
+  if (event.key === 'Enter') check();
+});
+fillGames();
