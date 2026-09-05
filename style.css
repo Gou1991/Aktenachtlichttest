@@ -75,3 +75,67 @@ footer{margin-top:26px;padding-top:13px;border-top:1px solid rgba(77,58,35,.2);c
 @keyframes confetti{0%{opacity:0;transform:translateY(-15px) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translateY(470px) rotate(620deg)}}
 @media(max-width:520px){.finale{margin-inline:-5px;padding:27px 16px 23px}.final-beam{width:180px}.success-stamp{font-size:19px}}
 @media(max-width:520px){body[data-game="drache"] h1{font-size:33px;line-height:.96;overflow-wrap:normal;word-break:normal}}
+
+/* ---------- Gemeinsames Themen-Emblem ---------- */
+.theme-emblem{position:relative;width:76px;aspect-ratio:1;border:3px solid var(--brass-light);border-radius:50%;background-position:center;background-size:cover;box-shadow:0 5px 14px rgba(8,14,18,.32),inset 0 0 0 4px rgba(15,25,31,.62);overflow:hidden}
+.theme-emblem::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,235,183,.56);border-radius:50%}
+body[data-game="nachtlicht"] .theme-emblem{background-image:linear-gradient(rgba(4,18,28,.08),rgba(4,18,28,.18)),url("assets/nachtlicht-lighthouse.png")}
+body[data-game="drache"] .theme-emblem{background-image:linear-gradient(rgba(31,7,10,.08),rgba(31,7,10,.22)),url("assets/dragon-citadel.png")}
+
+/* ---------- Eigenständiges Hauptmenü ---------- */
+body[data-game="menu"]{background-color:#07111a;background-image:linear-gradient(90deg,rgba(3,10,17,.46),rgba(3,10,17,.88) 49%,rgba(3,10,17,.48)),url("assets/nachtlicht-lighthouse.png"),url("assets/dragon-citadel.png");background-size:cover,54% 100%,54% 100%;background-position:center,left center,right center;background-repeat:no-repeat}
+body[data-game="menu"] .shell{width:min(1100px,100%)}
+body[data-game="menu"] .case-file{background:radial-gradient(circle at 50% 0,rgba(58,76,87,.52),transparent 42%),linear-gradient(145deg,rgba(12,27,38,.96),rgba(7,18,28,.97));border-color:rgba(220,181,102,.58);box-shadow:0 32px 90px rgba(0,0,0,.78),inset 0 0 70px rgba(173,126,48,.07)}
+body[data-game="menu"] .case-file::before{border-color:rgba(224,191,126,.2)}
+body[data-game="menu"] .case-file::after{border-color:rgba(211,171,91,.12);box-shadow:inset 0 0 0 12px transparent,inset 0 0 0 14px rgba(211,171,91,.08),inset 0 0 0 34px transparent,inset 0 0 0 36px rgba(211,171,91,.08)}
+body[data-game="menu"] .theme-emblem{background-image:conic-gradient(from 30deg,#b58a3d 0 25%,#142f40 0 50%,#812d31 0 75%,#16283b 0);box-shadow:0 0 0 6px rgba(197,157,78,.1),0 7px 20px rgba(0,0,0,.45)}
+body[data-game="menu"] .theme-emblem::before{content:"✦";position:absolute;inset:0;display:grid;place-items:center;color:#f4deb0;font-family:Georgia,serif;font-size:36px;text-shadow:0 2px 5px #000}
+body[data-game="menu"] h1{color:#f3e6c8;text-shadow:0 3px 16px rgba(0,0,0,.55)}
+body[data-game="menu"] .eyebrow{color:#d7aa56}
+body[data-game="menu"] .story{color:#bfc9cb}
+body[data-game="menu"] .case-number{color:#c8b48c}
+body[data-game="menu"] footer{color:#aeb9ba;border-color:rgba(217,177,96,.23)}
+body[data-game="menu"] footer span:last-child{color:#d2a955}
+.menu-heading{margin:34px 0 20px;text-align:center}.menu-heading h2{margin:0;color:#f2e4c3;font-size:30px}.menu-heading p{max-width:650px;margin:8px auto 0;color:#9eabad;line-height:1.5}.menu-ornament{display:block;width:80px;height:2px;margin:0 auto 15px;background:linear-gradient(90deg,transparent,#c49b50,transparent)}
+.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.game-card{display:flex;min-width:0;min-height:440px;margin:0;padding:0;flex-direction:column;text-align:left;border:1px solid rgba(217,183,115,.38);border-radius:10px;color:#ede2cb;background:#101e28;box-shadow:0 17px 38px rgba(0,0,0,.38);text-transform:none;letter-spacing:normal;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.game-card::before{display:none}.game-card:hover{transform:translateY(-5px);border-color:#d4aa59;box-shadow:0 22px 48px rgba(0,0,0,.52)}
+.card-art{position:relative;display:block;width:100%;height:205px;overflow:hidden;border-radius:9px 9px 0 0}.card-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#101e28 100%)}.card-art img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}.game-card:hover .card-art img{transform:scale(1.045)}
+.game-card--nachtlicht .card-art img{object-position:60% 49%}.game-card--drache .card-art img{object-position:50% 45%}
+.card-content{display:flex;padding:3px 23px 24px;flex:1;flex-direction:column}.card-kicker{color:#d4aa58;font-family:"Oswald",sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}.card-content strong{margin-top:7px;color:#fff1d2;font-family:"Oswald",sans-serif;font-size:28px;line-height:1.05;text-transform:uppercase}.game-card--drache .card-content strong{font-family:Georgia,serif;font-size:25px}.card-description{min-height:58px;margin-top:12px;color:#b8c2c3;font-family:"Special Elite",monospace;font-size:13px;line-height:1.48}.card-meta{display:flex;margin-top:12px;flex-wrap:wrap;gap:6px}.card-meta span{padding:5px 8px 3px;border:1px solid rgba(207,172,100,.25);border-radius:20px;color:#d7c7a5;background:rgba(255,255,255,.035);font-family:"Oswald",sans-serif;font-size:10px;letter-spacing:.05em}.card-action{display:flex;margin-top:auto;padding-top:18px;align-items:center;justify-content:space-between;color:#e7be6a;border-top:1px solid rgba(211,172,94,.18);font-family:"Oswald",sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.card-action b{font-size:22px}
+
+/* ---------- Akte Nachtlicht: kühle nautische Ermittlungsakte ---------- */
+body[data-game="nachtlicht"] .case-file{background:radial-gradient(circle at 18% 3%,rgba(255,255,255,.48),transparent 28%),repeating-linear-gradient(0deg,rgba(21,53,68,.025) 0 1px,transparent 1px 5px),linear-gradient(145deg,#eee6d5,#ddd1bb);border-color:rgba(197,157,86,.68);box-shadow:0 30px 78px rgba(0,0,0,.74),inset 0 0 70px rgba(26,53,65,.12)}
+body[data-game="nachtlicht"] .puzzle-sheet{background:linear-gradient(155deg,rgba(250,246,233,.92),rgba(220,214,196,.9));border-left:5px solid #17384b;box-shadow:0 10px 30px rgba(15,35,47,.17),inset 0 0 45px rgba(23,56,75,.055)}
+body[data-game="nachtlicht"] .puzzle-sheet::after{content:"";position:absolute;right:18px;bottom:16px;width:75px;height:75px;border:2px solid rgba(23,56,75,.1);border-radius:50%;box-shadow:inset 0 0 0 9px transparent,inset 0 0 0 11px rgba(23,56,75,.08)}
+body[data-game="nachtlicht"] #typeLabel{color:#8b2524}
+body[data-game="nachtlicht"] button:not(.back-menu){background:linear-gradient(180deg,#173e53,#092b3e);border-color:#947034}
+
+/* ---------- Der verschwundene Drache: königliche Fantasy-Akte ---------- */
+body[data-game="drache"]{background-image:linear-gradient(180deg,rgba(5,8,17,.25),rgba(6,8,14,.78)),url("assets/dragon-citadel.png");background-position:50% 48%;background-size:cover}
+body[data-game="drache"] .case-file{background:radial-gradient(circle at 76% 1%,rgba(255,237,186,.38),transparent 31%),repeating-linear-gradient(90deg,rgba(88,48,22,.027) 0 1px,transparent 1px 6px),linear-gradient(145deg,#ead9b5,#d7bd8e);border:2px solid rgba(211,166,73,.75);box-shadow:0 30px 85px rgba(0,0,0,.78),inset 0 0 75px rgba(96,48,22,.18)}
+body[data-game="drache"] h1,body[data-game="drache"] h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.018em}
+body[data-game="drache"] h1{color:#281711;text-shadow:0 1px 0 rgba(255,243,207,.65)}
+body[data-game="drache"] .eyebrow{color:#852a2d}
+body[data-game="drache"] .story{color:#594536}
+body[data-game="drache"] .status{color:#644c35;border-color:rgba(109,71,35,.32)}
+body[data-game="drache"] #typeLabel{color:#8b2524}
+body[data-game="drache"] .progress{height:5px;background:rgba(88,51,25,.18)}body[data-game="drache"] .progress span{background:linear-gradient(90deg,#7d2428,#d9a942,#f2d17b)}
+body[data-game="drache"] .puzzle-sheet{background:radial-gradient(circle at 90% 5%,rgba(218,167,72,.13),transparent 31%),linear-gradient(150deg,#172536,#101a28);border:1px solid #9a7130;border-left:5px solid #8b292d;box-shadow:0 13px 34px rgba(39,20,11,.3),inset 0 0 45px rgba(0,0,0,.2)}
+body[data-game="drache"] .puzzle-sheet h2{color:#e6bd69;text-shadow:0 2px 0 #000}
+body[data-game="drache"] #prompt{color:#e7dcc6}
+body[data-game="drache"] label{color:#d7ad59}
+body[data-game="drache"] input{color:#231b17;background:#f1dfb9;border-color:#bc8c3a;box-shadow:inset 0 2px 9px rgba(73,39,19,.2),0 0 0 1px rgba(239,204,128,.12)}
+body[data-game="drache"] input:focus-visible{border-color:#d4a74c;box-shadow:0 0 0 3px rgba(213,164,71,.25),inset 0 2px 9px rgba(73,39,19,.2)}
+body[data-game="drache"] button:not(.back-menu){background:linear-gradient(180deg,#8b3033,#5d1a21);border-color:#d1a24a;box-shadow:inset 0 0 0 1px rgba(242,203,115,.2),0 6px 16px rgba(54,15,19,.32)}
+body[data-game="drache"] .paper-clip{border-color:#c49a49}
+body[data-game="drache"] .ok{color:#e0bb68}body[data-game="drache"] .bad{color:#f18d82}
+body[data-game="drache"] footer span:last-child{color:#7d2428}
+
+.back-menu{width:auto;min-height:0;margin:0 0 13px;padding:3px 0;border:0;color:#63594b;background:transparent!important;box-shadow:none!important;font-family:"Oswald",sans-serif;font-size:11px;letter-spacing:.1em;text-align:left}
+.back-menu::before{display:none}.back-menu:hover{color:var(--stamp);transform:none}.back-menu:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+body[data-game="drache"] .back-menu{color:#6e4c2f}
+.finale--drache{background:radial-gradient(circle at 50% 0,rgba(218,164,68,.13),transparent 34%),linear-gradient(155deg,rgba(245,226,185,.95),rgba(216,188,139,.95));border-color:#a67931}
+
+@media(max-width:760px){body[data-game="menu"] .shell{width:100%}.game-grid{grid-template-columns:1fr}.game-card{min-height:0}.card-art{height:180px}.card-description{min-height:0}.menu-heading{margin-top:27px}}
+@media(max-width:520px){.theme-emblem{width:55px}.menu-heading h2{font-size:27px}.menu-heading p{font-size:13px}.game-card{border-radius:8px}.card-art{height:150px}.card-content{padding:2px 17px 18px}.card-content strong{font-size:25px}.game-card--drache .card-content strong{font-size:22px}.card-meta span{font-size:9px}body[data-game="menu"] .case-file{padding-bottom:25px}}

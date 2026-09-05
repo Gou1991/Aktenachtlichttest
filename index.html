@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07131d">
-  <meta name="description" content="Escape Decoder für Akte Nachtlicht">
-  <title>Akte Nachtlicht · Escape Decoder</title>
+  <meta name="description" content="Escape-Archiv mit den Spielen Akte Nachtlicht und Der verschwundene Drache">
+  <title>Escape-Archiv · Nachtlicht &amp; Drache</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,26 +13,27 @@
   <main class="shell">
     <section class="case-file" aria-labelledby="title">
       <header class="case-header">
-        <div id="classification" class="classification">GEHEIM</div>
-        <div id="caseNumber" class="case-number">FALL NR. NL–0047</div>
+        <div id="classification" class="classification">SPIELARCHIV</div>
+        <div id="caseNumber" class="case-number">ZWEI FÄLLE</div>
       </header>
 
       <div class="brand-row">
-        <div class="lighthouse-mark" aria-hidden="true">
-          <span class="beam"></span><span class="lantern"></span><span class="tower"></span><span class="rocks"></span>
-        </div>
+        <div id="themeEmblem" class="theme-emblem" aria-hidden="true"></div>
         <div>
           <div class="eyebrow">ESCAPE DECODER</div>
-          <h1 id="title">Spiel laden …</h1>
+          <h1 id="title">Escape-Archiv</h1>
         </div>
       </div>
 
       <p id="story" class="story"></p>
 
       <div id="selectWrap" class="selection-panel">
-        <label for="gameSelect">Einsatzakte auswählen</label>
-        <div class="select-frame"><select id="gameSelect"></select></div>
-        <button id="loadGame" type="button"><span>Spiel starten</span></button>
+        <div class="menu-heading">
+          <span class="menu-ornament" aria-hidden="true"></span>
+          <h2>Einsatzakte wählen</h2>
+          <p>Jede Akte besitzt ihre eigene Welt, Rätselroute und Abschlussüberraschung.</p>
+        </div>
+        <div id="gameGrid" class="game-grid" aria-label="Verfügbare Spiele"></div>
       </div>
 
       <div id="decoder" hidden>
@@ -40,6 +41,7 @@
           <span id="stepLabel"></span><span id="typeLabel"></span>
         </div>
         <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        <button id="backMenu" class="back-menu" type="button">← Spiel wechseln</button>
 
         <div class="puzzle-sheet">
           <div class="paper-clip" aria-hidden="true"></div>
@@ -52,7 +54,7 @@
         </div>
       </div>
 
-      <footer><span id="footerBrand">AKTE NACHTLICHT</span><span>VERTRAULICH</span></footer>
+      <footer><span id="footerBrand">ESCAPE-ARCHIV</span><span id="footerStatus">BEREIT</span></footer>
     </section>
   </main>
   <script src="app.js"></script>
