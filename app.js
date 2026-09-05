@@ -51,6 +51,42 @@ const games = {
       stamp: 'TIMELINE<br>GERETTET',
       ascii: ['        .-=================-.','     .-\'   2049  |  1427    \'.','   <  JORA  ^_^   [PORTAL]  GREIF >','      \\_______  ||  _______/','              \\_||_/','         NULLWALD ONLINE']
     }
+  },
+  geisterhaus: {
+    name: 'Das verlassene Geisterhaus', menuLabel: 'Paranormale Hausakte',
+    description: 'Zwei Stockwerke, verriegelte Zimmer und eine Stimme, die seit 1899 auf ihre Befreiung wartet.',
+    cover: 'assets/geisterhaus-cover.jpg', printFile: 'downloads/geisterhaus-druckbilder.zip', meta: ['15 Rätsel', '150–180 Min.', 'Sehr schwer'],
+    caseNumber: 'AG–1899', classification: 'NICHT BETRETEN', theme: { accent: '#d8d8d3', mode: 'geisterhaus' },
+    story: 'Haus Amselgrund ordnet seine Zimmer neu. Der Decoder ist eure einzige Verbindung zu Mara — und zu der Stimme im Gemäuer.',
+    openingTitle: 'MARA WINTER // HAUS AMSELGRUND',
+    opening: [
+      '1899 verschwand die Familie Voss während einer Séance. Türen wurden von innen verriegelt, Uhren blieben um 23:17 Uhr stehen. Gefunden wurde nur das Tagebuch der achtjährigen Edna.',
+      'Heute betritt die Gebäudeforensikerin Mara Winter das verlassene Haus. Kurz nach ihrem ersten Funkspruch fällt die Eingangstür ins Schloss. Ihr Messgerät sendet nun Nachrichten aus Räumen, die laut Bauplan nicht miteinander verbunden sind.',
+      'Jede richtige Lösung entriegelt ein anderes Zimmer. Haltet euch exakt an die Seiten- und Rätselnummern im Decoder. Beginnt mit Seite 2 · Rätsel 1.'
+    ],
+    puzzles: [
+      { page: 2, no: 1, answer: 'AMSEL', praise: 'Die verborgene Signatur ist vollständig.', beat: 'AMSEL ist kein Vogelruf, sondern der Name des Hauses. Mara erkennt darunter eine zweite Handschrift: „Geht nicht dorthin, wo die Tür offen ist.“ Der einzige sichere Zugang liegt im Foyer.', transmission: 'RAUM FREIGEGEBEN // Öffnet jetzt Seite 4.' },
+      { page: 4, no: 2, answer: 'TREPPEN', praise: 'Sieben Spuren richtig geordnet.', beat: 'Auf der Treppe erscheinen kleine, nasse Fußabdrücke. Sie enden vor dem Kinderzimmer im Obergeschoss, obwohl dessen Tür seit 1899 vernagelt ist.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 7 und löst dort zuerst Rätsel 3.' },
+      { page: 7, no: 3, answer: '7', inputMode: 'numeric', praise: 'Ihr habt der Täuschung nicht geglaubt.', beat: 'Die Zahl flackert auch auf Maras Messgerät. Für einen Augenblick steht hinter ihr ein Kind — dann bleibt nur sein Umriss im Bildschirmrauschen.', transmission: 'Das Prüfbild kann zur besseren Ansicht separat geladen werden.', downloadAsset: 'assets/geisterhaus/optisches-pruefraster.png', downloadLabel: 'Optisches Prüfbild herunterladen' },
+      { page: 7, no: 4, answer: 'SCHRANK', praise: 'Die Spiegelstimme ist lesbar.', beat: 'Im Schrank liegt kein Kleid, sondern ein Bibliotheksausweis auf den Namen Edna Voss. Zwischen den Lamellen zieht kalte Luft aus Richtung Erdgeschoss.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 5.' },
+      { page: 5, no: 5, answer: 'SPIEGEL', praise: 'Die Buchrücken stehen wieder richtig.', beat: 'Ein Buch springt auf. Alle Seiten sind leer, bis Mara es vor den blinden Wandspiegel hält. Darin erscheint ein Klavier mit sechs gedrückten Tasten.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 6.' },
+      { page: 6, no: 6, answer: 'SECHS', praise: 'Die stumme Melodie hat geantwortet.', beat: 'Sechs Töne laufen rückwärts durch das Haus. In der Küche beginnen vier Gläser im gleichen Rhythmus zu klirren. Ednas Stimme flüstert: „Ordnet, was Mutter zurückließ.“', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 8.' },
+      { page: 8, no: 7, answer: '3142', inputMode: 'numeric', praise: 'Die vier Gläser sind eindeutig geordnet.', beat: 'Der Code löst ein Schloss unter der Spüle. Dahinter führt ein gemauerter Schacht in den Keller. Dort steigt der Druck in einem uralten Rohrnetz.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 10 und löst zuerst Rätsel 8.' },
+      { page: 10, no: 8, answer: 'VENTIL', praise: 'Der sichere Weg durch das Rohrnetz steht.', beat: 'Mara dreht das Ventil. Das Zischen verstummt und legt eine zweite Nachricht frei, eingeritzt in eine vereiste Kupferplatte.', transmission: 'Bleibt auf Seite 10 und löst nun Rätsel 9.' },
+      { page: 10, no: 9, answer: 'KALT', praise: 'Der Kältestrom ist entschlüsselt.', beat: 'KALT ist zugleich eine Warnung. Im Observatorium beschlägt das Teleskop von innen. Sterne bilden dort einen Weg, den nur euer Decoder übertragen kann.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 11.' },
+      { page: 11, no: 10, answer: 'NORDWEST', praise: 'Die Sternenroute ist vollständig.', beat: 'Im Nordwesten der Kuppel öffnet sich eine schmale Luke zum Dachboden. Mara hört darüber Stühle rücken — genau sieben, um einen runden Tisch.', transmission: 'DATENPAKET // Startet am S-Feld und folgt: ↑ ↑ → → ↓ ↓ → ↑', downloadAsset: 'assets/geisterhaus/sternenroute.png', downloadLabel: 'Sternenroute herunterladen' },
+      { page: 12, no: 11, answer: '1899', inputMode: 'numeric', praise: 'Papier und Licht haben das Jahr freigelegt.', beat: '1899 springt die stehengebliebene Dachbodenuhr wieder an. Jeder Schlag verändert eine Erinnerung im Speisesaal. Das Haus versucht, seine eigene Vergangenheit zu fälschen.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 9.' },
+      { page: 9, no: 12, answer: '9', inputMode: 'numeric', praise: 'Alle falschen Erinnerungen gefunden.', beat: 'Neun Veränderungen verschwinden. Übrig bleibt ein Familienporträt, in fünf Stücke zerrissen. Hinter einem Gesicht steht mit Bleistift nur ein Vorname.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 13.' },
+      { page: 13, no: 13, answer: 'EDNA', praise: 'Die Familie ist wieder zusammengesetzt.', beat: 'Edna war nie die Gefahr. Ihre Eltern banden ihre Erinnerung an das Haus, um etwas anderes im Kamin einzuschließen. Im Archiv wartet eine Lochmaske auf die Nachricht vom Anfang.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 14. Ihr braucht zusätzlich Seite 2.' },
+      { page: 14, no: 14, answer: 'KAMIN', praise: 'Die fünf Fenster zeigen denselben Ort.', beat: 'Hinter dem Kamin findet Mara einen zugemauerten Durchgang zum Séancezimmer. Auf der Schwelle steht: „Nur der erste Index weckt, was wir zum Schweigen brachten.“', transmission: 'LETZTER RAUM FREIGEGEBEN // Öffnet Seite 15 und haltet Seite 1 bereit.' },
+      { page: 15, no: 15, answer: 'ERWACHE', praise: 'Der letzte Befehl wurde gesprochen.', beat: 'Die Kerzen entzünden sich ohne Flamme. Ednas Schatten löst sich aus der Wand, lächelt Mara ein einziges Mal zu und tritt ins Morgenlicht. Haus Amselgrund hört auf, seine Räume zu verschieben.' }
+    ],
+    finale: {
+      kicker: '23:17 UHR // DIE ZEIT LÄUFT WEITER', title: 'EDNA IST FREI', sound: true, soundProfile: 'haunted',
+      text: 'Ihr habt alle verriegelten Zimmer durchquert, die falschen Erinnerungen entlarvt und Ednas Namen zurückgegeben. Hinter Mara öffnet sich die Haustür von selbst. Als sie hinaustritt, schlägt die Uhr zum ersten Mal seit 1899 wieder Mitternacht.',
+      stamp: 'HAUSAKTE<br>GESCHLOSSEN',
+      ascii: ['             /\\','        ____/  \\____','       /  _   []   _  \\','      /__|_|______|_|__\\','      |   EDNA IST FREI  |','      |______    ________|','             |__|']
+    }
   }
 };
 
@@ -89,7 +125,7 @@ function unlockEmergency() {
 
 function renderEmergency(revealed=false) {
   const id=$('emergencyGame').value || Object.keys(games)[0], entry=games[id], puzzle=entry.puzzles[emergencyStep];
-  const location=id==='zeitfehler' ? `Seite ${puzzle.page} · Rätsel ${puzzle.no}` : puzzle.plural ? `Seiten ${puzzle.page}` : `Seite ${puzzle.page}`;
+  const location=puzzle.no!==undefined ? `Seite ${puzzle.page} · Rätsel ${puzzle.no}` : puzzle.plural ? `Seiten ${puzzle.page}` : `Seite ${puzzle.page}`;
   $('solutionCard').innerHTML=`<p class="solution-progress">SCHRITT ${emergencyStep+1} / ${entry.puzzles.length}</p><h3>${location}</h3><div class="solution-answer ${revealed?'is-revealed':''}">${revealed?`LÖSUNG: <strong>${puzzle.answer}</strong>`:'Lösung noch verdeckt'}</div>`;
   $('revealSolution').hidden=revealed;
   $('nextSolution').hidden=!revealed || emergencyStep>=entry.puzzles.length-1;
@@ -119,18 +155,18 @@ function start(id, updateUrl = true) {
 }
 
 function showOpening() {
-  $('stage').innerHTML=`<section class="opening-terminal"><p class="terminal-kicker">&gt; INCOMING_TRANSMISSION</p><h2>NOVA KERN // 2049</h2>${game.opening.map(p=>`<p>${p}</p>`).join('')}<button id="continueStory" type="button"><span>Übertragung starten · Seite 2</span></button></section>`;
+  $('stage').innerHTML=`<section class="opening-terminal"><p class="terminal-kicker">&gt; EINGEHENDE ÜBERTRAGUNG</p><h2>${game.openingTitle||'EINSATZZENTRALE'}</h2>${game.opening.map(p=>`<p>${p}</p>`).join('')}<button id="continueStory" type="button"><span>Übertragung starten · Seite ${game.puzzles[0].page}</span></button></section>`;
   $('continueStory').onclick=render;
 }
 
 function render() {
-  const p=game.puzzles[step], numbered=gameId==='zeitfehler';
+  const p=game.puzzles[step], numbered=p.no!==undefined;
   const pageText=numbered ? `Seite ${p.page} · Rätsel ${p.no}` : `Seite ${p.page}`;
   const prompt=p.plural ? `Gebt die gemeinsame Lösung der Seiten ${p.page} ein.` : `Gebt die Lösung von ${pageText} ein.`;
   $('stage').innerHTML=`<div class="status" aria-label="Rätselstatus"><span>Rätsel ${step+1} von ${game.puzzles.length}</span><span id="typeLabel">${pageText}</span></div>
     <div class="progress" aria-hidden="true"><span style="--progress:${((step+1)/game.puzzles.length)*100}%"></span></div>
     <div class="puzzle-sheet"><div class="paper-clip" aria-hidden="true"></div><h2>${pageText}</h2><p id="prompt">${prompt}</p>
-    ${p.transmission ? `<div class="transmission"><strong>&gt; APP-DATENPAKET</strong><p>${p.transmission}</p></div>` : ''}
+    ${p.transmission ? `<div class="transmission"><strong>&gt; APP-DATENPAKET</strong><p>${p.transmission}</p>${p.downloadAsset?`<a class="puzzle-download" href="${p.downloadAsset}" download>${p.downloadLabel||'Bild herunterladen'} ↓</a>`:''}</div>` : ''}
     <label for="answer">Eure Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="${p.inputMode||'text'}" placeholder="Code oder Lösungswort">
     <button id="check" type="button"><span>Prüfen</span></button><p id="message" aria-live="polite"></p></div>`;
   $('check').onclick=check; $('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()}); $('answer').focus({preventScroll:true});
@@ -150,13 +186,13 @@ function armAudio(){
 
 function playFinalSound(){
   if(!game.finale.sound||!audioContext)return;
-  const now=audioContext.currentTime, notes=[220,330,440,660,880];
+  const now=audioContext.currentTime, notes=game.finale.soundProfile==='haunted'?[82,82,196,247,330,494]:[220,330,440,660,880];
   notes.forEach((freq,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.type=i<2?'square':'sine';o.frequency.setValueAtTime(freq,now+i*.13);g.gain.setValueAtTime(.0001,now+i*.13);g.gain.exponentialRampToValueAtTime(.09,now+i*.13+.025);g.gain.exponentialRampToValueAtTime(.0001,now+i*.13+.36);o.connect(g).connect(audioContext.destination);o.start(now+i*.13);o.stop(now+i*.13+.38)});
 }
 
 function showFinale() {
   const f=game.finale;
-  const artwork=f.image?`<img class="final-dragon-image" src="${f.image}" alt="Fyrion beschützt ein frisch geschlüpftes Drachenjunges">`:f.ascii?`<pre class="ascii-finale" aria-label="Stabilisiertes Zeitportal">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
+  const artwork=f.image?`<img class="final-dragon-image" src="${f.image}" alt="Fyrion beschützt ein frisch geschlüpftes Drachenjunges">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
   $('stage').innerHTML=`<section class="finale finale--${game.theme.mode}" aria-labelledby="finaleTitle"><div class="celebration" aria-hidden="true">${'<i></i>'.repeat(12)}</div>${artwork}<p class="final-kicker">${f.kicker}</p><h2 id="finaleTitle">${f.title}</h2><p>${f.text}</p><div class="success-stamp">${f.stamp}</div>${f.sound?'<button id="replaySound" class="secondary-action" type="button"><span>♫ Erfolgssignal wiederholen</span></button>':''}<button id="toMenu" type="button"><span>Zur Spielauswahl</span></button></section>`;
   $('toMenu').onclick=()=>showMenu(); if(f.sound){$('replaySound').onclick=playFinalSound; playFinalSound();}
 }
@@ -165,7 +201,7 @@ function check() {
   armAudio(); const p=game.puzzles[step];
   if(norm($('answer').value)===norm(p.answer)){
     $('message').textContent='✓ Richtig'; $('message').className='ok';
-    setTimeout(()=> gameId==='zeitfehler' ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale()),600);
+    setTimeout(()=> p.beat ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale()),600);
   } else { $('message').textContent='✕ Noch nicht richtig'; $('message').className='bad'; }
 }
 

@@ -194,3 +194,38 @@ body[data-game="drache"] .back-menu{color:#6e4c2f}
 .solution-card{min-height:190px;margin-top:18px;padding:22px;border:1px solid #8f816c;background:rgba(255,253,245,.65);box-shadow:inset 0 0 20px rgba(60,42,24,.08)}.solution-card h3{margin:4px 0 18px;font-family:"Oswald",sans-serif;font-size:27px;text-transform:uppercase}.solution-progress{margin:0;color:#7c2827;font-family:"Oswald",sans-serif;font-size:11px;font-weight:700;letter-spacing:.13em}.solution-answer{display:grid;min-height:68px;padding:14px;place-items:center;color:#71685c;border:1px dashed #9a8c78;text-align:center}.solution-answer.is-revealed{color:#fff7e8;background:#152f3f;border-style:solid;font-size:16px}.solution-answer strong{font-size:clamp(24px,7vw,36px);letter-spacing:.08em}.solution-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.solution-actions button{min-width:0}.emergency-dialog .secondary-action{color:#26343b!important;background:transparent!important;border-color:#796b57!important;box-shadow:none!important}
 @media(max-width:760px){.download-grid{grid-template-columns:1fr}.archive-tools__head{align-items:flex-start;flex-direction:column}.emergency-button{width:100%}}
 @media(max-width:520px){.archive-tools{margin-inline:-5px;padding:17px}.solution-actions{grid-template-columns:1fr}.emergency-dialog__inner{padding:29px 18px 22px}}
+
+/* ---------- Das verlassene Geisterhaus: viktorianische Bleistiftakte ---------- */
+.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.game-card--geisterhaus .card-art img{object-position:center 38%;filter:grayscale(1) contrast(1.17)}
+.game-card--geisterhaus .card-content strong{font-family:Georgia,"Times New Roman",serif;font-size:24px}
+.download-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+body[data-game="geisterhaus"]{background-color:#090a0a;background-image:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.86)),url("assets/geisterhaus-cover.jpg");background-position:center 36%;background-size:cover;font-family:Georgia,"Times New Roman",serif}
+body[data-game="geisterhaus"]::before{background:radial-gradient(circle at 50% 18%,transparent 0 20%,rgba(0,0,0,.76) 88%),repeating-linear-gradient(92deg,rgba(255,255,255,.018) 0 1px,transparent 1px 8px)}
+body[data-game="geisterhaus"] .case-file{color:#181919;background:repeating-linear-gradient(3deg,rgba(0,0,0,.018) 0 1px,transparent 1px 6px),linear-gradient(150deg,#f2f2ed,#d2d2cc);border:2px solid #171818;border-radius:1px;box-shadow:0 34px 100px #000,inset 0 0 85px rgba(0,0,0,.13);transform:none}
+body[data-game="geisterhaus"] .case-file::before{border:1px solid rgba(0,0,0,.34);border-radius:0}
+body[data-game="geisterhaus"] .case-file::after{border-color:rgba(0,0,0,.12);border-radius:0;transform:rotate(13deg)}
+body[data-game="geisterhaus"] .theme-emblem{border-color:#161717;border-radius:0;background-image:url("assets/geisterhaus-cover.jpg");filter:grayscale(1) contrast(1.28);box-shadow:6px 6px 0 rgba(0,0,0,.17)}
+body[data-game="geisterhaus"] .theme-emblem::after{border-color:rgba(255,255,255,.45);border-radius:0}
+body[data-game="geisterhaus"] h1,body[data-game="geisterhaus"] h2{color:#111;font-family:Georgia,"Times New Roman",serif;letter-spacing:-.025em}
+body[data-game="geisterhaus"] .eyebrow,body[data-game="geisterhaus"] #typeLabel,body[data-game="geisterhaus"] .final-kicker{color:#2b2c2c}
+body[data-game="geisterhaus"] .classification{color:#111;border-color:#111;transform:rotate(-2deg)}
+body[data-game="geisterhaus"] .story,body[data-game="geisterhaus"] .case-number,body[data-game="geisterhaus"] .status{color:#464747}
+body[data-game="geisterhaus"] .progress{height:6px;border:1px solid #6a6b69;background:#c7c7c2}body[data-game="geisterhaus"] .progress span{background:repeating-linear-gradient(90deg,#151616 0 10px,#777 10px 12px)}
+body[data-game="geisterhaus"] .puzzle-sheet,body[data-game="geisterhaus"] .opening-terminal,body[data-game="geisterhaus"] .story-terminal,body[data-game="geisterhaus"] .finale{position:relative;margin-top:8px;padding:clamp(20px,5vw,31px);background:repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0 1px,transparent 1px 5px),#ededE8;border:2px solid #222;border-left:8px solid #1b1c1c;box-shadow:8px 8px 0 rgba(0,0,0,.16),inset 0 0 42px rgba(0,0,0,.06)}
+body[data-game="geisterhaus"] .opening-terminal p,body[data-game="geisterhaus"] .story-terminal p,body[data-game="geisterhaus"] .finale p,body[data-game="geisterhaus"] #prompt{color:#303131;line-height:1.66}
+body[data-game="geisterhaus"] input{color:#111;background:#fafaf6;border:2px solid #262727;border-radius:0;box-shadow:inset 0 0 16px rgba(0,0,0,.07)}
+body[data-game="geisterhaus"] button:not(.back-menu){color:#f3f3ef;background:#171818;border:2px solid #050505;border-radius:0;box-shadow:4px 4px 0 #757672}
+body[data-game="geisterhaus"] .paper-clip{border-color:#292a29}
+body[data-game="geisterhaus"] .transmission{border-color:#60615f;background:rgba(0,0,0,.045)}
+body[data-game="geisterhaus"] .terminal-kicker{color:#1b1c1c!important}
+body[data-game="geisterhaus"] .next-route{color:#171818;border-color:#62635f;background:rgba(0,0,0,.035)}
+body[data-game="geisterhaus"] .secondary-action{color:#171818!important;background:transparent!important;border-color:#171818!important;box-shadow:none!important}
+body[data-game="geisterhaus"] footer{color:#555;border-color:#777}body[data-game="geisterhaus"] footer span:last-child{color:#111}
+.puzzle-download{display:inline-block;margin-top:14px;padding:10px 12px;color:#f5f5f1!important;background:#1d1e1e;border:1px solid #000;font:700 12px/1.3 "Oswald",sans-serif;letter-spacing:.06em;text-decoration:none;text-transform:uppercase}
+.finale--geisterhaus .ascii-finale{color:#f1f1ed;background:#111;border-color:#555;animation:ghost-flicker 2.4s steps(2,end) infinite}
+.finale--geisterhaus .success-stamp{color:#171818;border-color:#171818;transform:rotate(-2deg)}
+.finale--geisterhaus .celebration i{width:3px!important;height:20px!important;background:#242525!important}
+@keyframes ghost-flicker{0%,94%,100%{opacity:1;text-shadow:0 0 2px #fff}95%{opacity:.38;text-shadow:0 0 16px #fff}97%{opacity:.78}}
+@media(max-width:900px) and (min-width:761px){.game-card--zeitfehler{grid-column:auto;max-width:none}}
+@media(max-width:760px){.game-grid,.download-grid{grid-template-columns:1fr}body[data-game="geisterhaus"] h1{font-size:clamp(31px,10vw,44px)}}
