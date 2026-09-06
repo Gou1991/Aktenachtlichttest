@@ -170,6 +170,40 @@ const ghostStoryExpansions = {
   14: ['Im Durchgang liegt die letzte Tagebuchseite. Die Eltern benutzten Ednas Namen als Schloss und versteckten den Öffnungsbefehl auf dem Titelblatt. Doch darunter hat Edna einen zweiten Satz geschrieben: „Wenn ihr mich weckt, sprecht meinen Namen zuerst — sonst antwortet der Gast.“'],
   15: ['Für einen Moment drängt eine zweite, viel größere Gestalt hinter Ednas Schatten aus der Wand. Edna dreht sich um, hebt die Hand und die Kreidelinie schließt sich wie eine Tür. Erst dann tritt sie ins Morgenlicht. Im ganzen Haus verstummen gleichzeitig die geliehenen Stimmen.']
 };
+const additionalStoryTracks = {
+  demo: {
+    0: { praise: 'Der Zahlencode rastet ein.', paragraphs: ['Im Sockel des Schreibtisches springt ein verborgenes Stahlfach auf. Darin liegt der letzte Einsatzbericht des Leuchtturmwärters Elias Venn: In der Nacht des 14. Oktober strich der Lichtkegel nicht über das Meer, sondern immer wieder über dieselbe Stelle an der Küste.', 'Am Rand hat Venn nur einen Satz notiert: „Das Licht sucht jemanden.“ Zwischen den Seiten steckt ein überbelichtetes Foto des Vollmonds.'] },
+    1: { praise: 'Das Logbuch gibt seine Erinnerung frei.', paragraphs: ['Unter dem Mondlicht wird auf dem Foto eine zweite Aufnahme sichtbar: ein leeres Boot mitten in ruhiger See. Im Lichtstrahl steht dennoch der Schatten eines Menschen, als hätte die Laterne eine Erinnerung an Land gezogen.', 'Auf der Rückseite findet ihr Venns Warnung: „Nicht das Schiff kehrt zurück. Nur sein Ruf.“ Die letzte verschlüsselte Seite seines Logbuchs wartet im Turm.'] },
+    2: { praise: 'Venns letzte Nachricht ist lesbar.', paragraphs: ['Der Leuchtturmwärter hatte das Feuer selbst gelöscht. Das alte Signal lockte jede Nacht die Stimmen einer verschollenen Besatzung näher an die Klippen. Venn unterbrach den Kreislauf und hinterließ euch den einzigen sicheren Weg, das Licht ohne den falschen Ruf wieder zu entzünden.', 'Als ihr die Nachricht beendet, erwacht die Laterne über Stillsee. Ihr Strahl folgt wieder dem Horizont — und zum ersten Mal bleibt die Küste dunkel und still.'] }
+  },
+  drache: {
+    0: { praise: 'Das erste Drachensiegel öffnet sich.', paragraphs: ['Unter dem Siegel liegt eine verbrannte Karte der königlichen Brutkammern. Fyrions Spur führt nicht hinaus aus der Burg, sondern zuerst zum jüngsten Drachenei. Daneben findet ihr eine einzelne Schuppe: außen verkohlt, innen ungewöhnlich kalt.', 'Jemand hat den Rand der Karte hastig mit einem Wort in alter Drachenschrift markiert.'] },
+    1: { praise: 'Die Runen beginnen zu glühen.', paragraphs: ['Die entschlüsselte Botschaft stammt von Fyrion selbst: „Ich wurde nicht geraubt. Ich musste vor ihnen fort.“ Noch bevor die Glut erlischt, erscheint darunter das Zeichen der königlichen Alchemisten.', 'Im Archiv fehlen genau jene Seiten, auf denen die Eigenschaften eines frisch geschlüpften Drachenherzens beschrieben werden.'] },
+    2: { praise: 'Die beiden Galerien stimmen wieder überein.', paragraphs: ['Die veränderten Eier sind keine zufälligen Fehler. Sie markieren eine geheime Inventarliste. Ein Ei wurde nicht zerbrochen, sondern vorsichtig aus der Brutkammer getragen; winzige Krallenspuren führen neben Fyrions viel größeren Abdrücken davon.', 'Fyrion floh also nicht allein. Er nahm etwas mit, das am Hof niemand finden durfte.'] },
+    3: { praise: 'Die Wächter können nicht länger lügen.', paragraphs: ['In der goldenen Truhe liegt weder Schatz noch Waffe, sondern der Eid des ersten Drachenhüters: „Kein König besitzt die letzte Glut.“ Das Dokument trägt Fyrions frischen Klauenabdruck.', 'Zwischen den Falten steckt ein Splitter derselben kalten Eierschale. Der nächste Abschnitt der Fluchtroute wurde in eine Himmelsrichtung verwandelt.'] },
+    4: { praise: 'Die Fluchtrichtung ist bestimmt.', paragraphs: ['Jenseits der östlichen Grenze berichten Hirten von einem gewaltigen Drachen, der trotz freiem Himmel niemals flog. Fyrion ging zu Fuß, damit das Ei auf seinem Rücken keinen Stoß erlitt.', 'Hinter ihm fanden sie silbernen Staub: die Spur eines Hofmagiers, der den königlichen Befehl hatte, die letzte Glut um jeden Preis zurückzubringen.'] },
+    5: { praise: 'Das verborgene Nest ist gefunden.', paragraphs: ['Das Nest ist noch warm, doch Fyrion hat es verlassen. In der Asche liegt eine Botschaft aus sechs Siegeln: Er lockte den Verfolger fort, während das Ei zu schlüpfen begann.', 'Jetzt ergeben die Zeichen eures gesamten Weges einen Namen. Nur wenn ihr ihn richtig sprecht, weiß der Drache, dass nicht der Hof euch geschickt hat.'] },
+    6: { praise: 'Der wahre Name hallt durch das Tal.', paragraphs: ['Fyrion tritt aus dem Nebel, verwundet, aber nicht besiegt. Hinter seinem Flügel bewegt sich ein frisch geschlüpftes Drachenjunges. Der verschwundene Drache war weder Gefangener noch Verräter — er wurde zum Beschützer des letzten freien Drachen.', 'Als der Hofmagier am Taleingang erscheint, entzünden sich die sieben gelösten Siegel. Eure Reise hat den alten Hütereid erneuert. Keine Krone kann das Jungtier nun beanspruchen.'] }
+  },
+  zeitfehler: {
+    0: { paragraphs: ['Nova prüft den Speicherchip: Seine Zeitmarke liegt drei Sekunden vor der Entstehung des Portals. „Jemand in 1427 wusste, dass ich kommen würde.“'] },
+    1: { paragraphs: ['Piko legt die Ohren an. „Das Westtor öffnet sich nur für Erinnerungen. Offenbar zählt euer Einführungstext inzwischen dazu.“'] },
+    2: { paragraphs: ['Im Spiegel erscheint Nova eine Sekunde zu früh. Ihr zukünftiges Abbild zeigt wortlos auf den wartenden Logikkern.'] },
+    3: { paragraphs: ['Mit der letzten Zahl ordnen sich Pikós leuchtende Fußspuren zu einem Weg. Der Chronowurm löscht ihn bereits vom hinteren Ende her.'] },
+    4: { paragraphs: ['Unter der Eiche entdeckt Nova ein eingeritztes Symbol aus ihrer eigenen Programmiersprache. Es ist Jahrhunderte zu alt.'] },
+    5: { paragraphs: ['Die Greifin nennt sich Avara. In ihren Federn flimmern einzelne Pixel, als hätte das Portal begonnen, auch Lebewesen zu überschreiben.'] },
+    6: { paragraphs: ['„Papier vergisst langsamer als Daten“, sagt Avara und reicht Nova das gefaltete Blatt. Für einen Augenblick steht derselbe Satz auch auf eurem Bildschirm.'] },
+    7: { paragraphs: ['Das Lichtsignal stabilisiert eine kleine Zone um Piko. Außerhalb davon zerfallen Bäume bereits zu Klammern, Schrägstrichen und Nullen.'] },
+    8: { paragraphs: ['Als Avaras Bild vollständig ist, kehrt auch ihre Erinnerung zurück: Der Chronowurm wurde nicht gefunden — er wurde in Novas Zeit erschaffen.'] },
+    9: { paragraphs: ['Nova erkennt den Systemschlüssel. Er stammt aus einem frühen Entwurf ihrer eigenen Sicherheitssoftware, den sie nie veröffentlicht hat.'] },
+    10: { paragraphs: ['Durch die Lochmaske sieht Nova zwei Versionen des Nullwalds. In einer davon hat sie das Portal nie betreten — und dort existiert Piko nicht.'] },
+    11: { paragraphs: ['Jeder gefundene Unterschied löscht eine falsche Zeitlinie. Avara warnt: „Bei der letzten wird der Wurm wissen, welche Welt ihr behalten wollt.“'] },
+    12: { paragraphs: ['Die umgekehrte Nummer öffnet einen Kanal nach 2049. Novas Labor steht leer, doch auf ihrem Monitor tippt etwas selbstständig weiter.'] },
+    13: { paragraphs: ['Im Kernel findet Nova ihre eigene Signatur — mit einem Datum aus der Zukunft. Der Chronowurm ist die Folge eines Reset-Befehls, den sie erst noch senden wird.'] },
+    14: { paragraphs: ['„Dann senden wir ihn diesmal richtig“, sagt Nova. Piko setzt seine Pfote auf das Portal, Avara spannt die Flügel und beide Jahre warten auf eure letzte Eingabe.'] }
+  }
+};
+const finaleButtonLabels = { nachtlicht: 'Akte abschließen', drache: 'Fyrion entgegengehen', zeitfehler: 'Zeitkern öffnen', geisterhaus: 'Letzte Tür öffnen', default: 'Finale öffnen' };
 let pageZoom = 1;
 
 function pageImageSource(page) {
@@ -314,9 +348,13 @@ function render() {
 
 function showBeat(p) {
   const final=step===game.puzzles.length-1;
-  const extra=gameId==='geisterhaus'?(ghostStoryExpansions[p.no]||[]):[];
-  const paragraphs=[p.beat,...extra];
-  $('stage').innerHTML=`<section class="story-terminal"><p class="terminal-kicker">&gt; ACCESS_GRANTED // ${String(step+1).padStart(2,'0')}</p><div class="story-check">✓</div><h2>${p.praise}</h2><div class="story-log">${paragraphs.map((text,index)=>`<p class="${index?'story-addition':''}">${text}</p>`).join('')}</div><div class="next-route">${final?'FINALE FREIGESCHALTET':`NÄCHSTES ZIEL // Seite ${game.puzzles[step+1].page} · Rätsel ${game.puzzles[step+1].no}`}</div><button id="continueStory" type="button"><span>${final?'Zeitkern öffnen':'Weiter zur nächsten Übertragung'}</span></button></section>`;
+  const track=additionalStoryTracks[gameId]?.[step]||{};
+  const ghostExtra=gameId==='geisterhaus'?(ghostStoryExpansions[p.no]||[]):[];
+  const paragraphs=[p.beat,...(track.paragraphs||[]),...ghostExtra].filter(Boolean);
+  const next=game.puzzles[step+1];
+  const nextTarget=next?(next.no!==undefined?`Seite ${next.page} · Rätsel ${next.no}`:next.plural?`Seiten ${next.page}`:`Seite ${next.page}`):'';
+  const finalButton=finaleButtonLabels[game.theme.mode]||finaleButtonLabels.default;
+  $('stage').innerHTML=`<section class="story-terminal"><p class="terminal-kicker">&gt; ACCESS_GRANTED // ${String(step+1).padStart(2,'0')}</p><div class="story-check">✓</div><h2>${p.praise||track.praise||'Spur gesichert.'}</h2><div class="story-log">${paragraphs.map((text,index)=>`<p class="${index?'story-addition':''}">${text}</p>`).join('')}</div><div class="next-route">${final?'FINALE FREIGESCHALTET':`NÄCHSTES ZIEL // ${nextTarget}`}</div><button id="continueStory" type="button"><span>${final?finalButton:'Weiter zur nächsten Übertragung'}</span></button></section>`;
   $('continueStory').onclick=()=>{ if(final) showFinale(); else {step++; render();} };
 }
 
@@ -343,7 +381,8 @@ function check() {
   armAudio(); const p=game.puzzles[step];
   if(norm($('answer').value)===norm(p.answer)){
     $('message').textContent='✓ Richtig'; $('message').className='ok';
-    setTimeout(()=> p.beat ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale()),600);
+    const hasStory=p.beat||additionalStoryTracks[gameId]?.[step]||(gameId==='geisterhaus'&&ghostStoryExpansions[p.no]);
+    setTimeout(()=> hasStory ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale()),600);
   } else { $('message').textContent='✕ Noch nicht richtig'; $('message').className='bad'; }
 }
 

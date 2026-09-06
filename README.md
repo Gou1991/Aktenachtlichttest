@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v18
+# Escape-Archiv · Decoder v19
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -26,6 +26,8 @@ In Version 16 passen sich die sieben versteckten Zeichen im Foyer automatisch an
 Die Hilfe zu Geisterhaus · Seite 4 · Rätsel 2 verwendet statt eines Texttipps eine ausdrücklich angekündigte Spoiler-Grafik mit allen sieben deutlich markierten Zeichen. Erst nach der verschärften Warnung und Bestätigung wird das Bild eingeblendet.
 
 Version 18 erweitert den Handlungsfortschritt des Geisterhauses nach jeder richtigen Lösung. Fünfzehn zusätzliche, mobil lesbare Story-Funksprüche führen Maras Untersuchung, Ednas wahre Rolle und die Bedrohung mit den gestohlenen Stimmen bis zum Finale zusammen. Rätsel, Lösungen und Seitenreihenfolge bleiben unverändert.
+
+Version 19 erweitert auch die drei älteren Spiele. Akte Nachtlicht erhält drei vollständige Ermittlungsabschnitte, Der verschwundene Drache sieben neue Szenen mit Fyrions Hüter-Wendepunkt und ZEITFEHLER // NULLWALD fünfzehn kurze Dialog- und Atmosphärenfragmente. Die gemeinsame Story-Funktion zeigt passende nächste Seiten auch bei Spielen ohne Rätselnummern korrekt an.
 
 ## Drucksatz
 
