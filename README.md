@@ -29,4 +29,4 @@ Der separate Drucksatz `Das-verlassene-Geisterhaus-15-Seiten.zip` enthält 15 nu
 
 ## Sicherheitsfach
 
-Auf der Hauptübersicht stehen die Druckdateien aller vier Spiele als lokale Downloads bereit. Der Notfallcode `9119` öffnet die schrittweise Lösungsanzeige für die Spielleitung. Die Anzeige wird direkt aus den Rätseldaten aufgebaut und übernimmt dadurch auch später ergänzte Spiele und Lösungen automatisch.
+Auf der Hauptübersicht stehen die Druckdateien aller vier Spiele als lokale Downloads bereit. Der Notfallcode `****` öffnet die schrittweise Lösungsanzeige für die Spielleitung. Die Anzeige wird direkt aus den Rätseldaten aufgebaut und übernimmt dadurch auch später ergänzte Spiele und Lösungen automatisch.
