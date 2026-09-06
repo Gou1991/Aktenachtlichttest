@@ -66,7 +66,7 @@ const games = {
     ],
     puzzles: [
       { page: 2, no: 1, answer: 'AMSEL', taunt: 'Das Haus gähnt. Es hatte mit aufmerksameren Eindringlingen gerechnet.', hint: 'Die Botschaft steckt nicht mitten in den Sätzen. Betrachtet bei allen fünf Zeilen dieselbe Stelle ganz am Anfang.', praise: 'Die verborgene Signatur ist vollständig.', beat: 'AMSEL ist kein Vogelruf, sondern der Name des Hauses. Mara erkennt darunter eine zweite Handschrift: „Geht nicht dorthin, wo die Tür offen ist.“ Der einzige sichere Zugang liegt im Foyer.', transmission: 'RAUM FREIGEGEBEN // Öffnet jetzt Seite 4.' },
-      { page: 4, no: 2, answer: 'TREPPEN', relatedPages: [3], taunt: 'Sieben Zeichen und schon verlauft ihr euch? Der Geist zählt leise mit.', hint: 'Die Fundhöhe entscheidet über die Reihenfolge. Beginnt möglichst nah am Boden und arbeitet euch nach oben.', praise: 'Sieben Spuren richtig geordnet.', beat: 'Auf der Treppe erscheinen kleine, nasse Fußabdrücke. Sie enden vor dem Kinderzimmer im Obergeschoss, obwohl dessen Tür seit 1899 vernagelt ist.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 7 und löst dort zuerst Rätsel 3.' },
+      { page: 4, no: 2, answer: 'TREPPEN', relatedPages: [3], hintWarning: 'Letzte Warnung: Wenn ihr fortfahrt, werden alle sieben Zeichen unübersehbar markiert. Das Suchrätsel ist damit praktisch gelöst. Wollt ihr euch diese Niederlage wirklich vom Haus bestätigen lassen?', taunt: 'Erbärmlich. Haus Amselgrund versteckt sieben kleine Zeichen und ihr verlangt, dass man sie euch auch noch einkreist. Edna hätte euch vermutlich nicht einmal mit Kreide an die Eingangstür gelassen.', hintImage: 'assets/geisterhaus/foyer-symbole-markiert.jpg', hintImageAlt: 'Foyerzeichnung mit sieben deutlich markierten Symbolen', hintCaption: 'Alle sieben Zeichen sind rot markiert. Ordnet sie weiterhin selbst vom tiefsten zum höchsten Fundort.', praise: 'Sieben Spuren richtig geordnet.', beat: 'Auf der Treppe erscheinen kleine, nasse Fußabdrücke. Sie enden vor dem Kinderzimmer im Obergeschoss, obwohl dessen Tür seit 1899 vernagelt ist.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 7 und löst dort zuerst Rätsel 3.' },
       { page: 7, no: 3, answer: '7', inputMode: 'numeric', taunt: 'Die Wand sieht klarer als ihr. Das ist für eine Wand ziemlich peinlich.', hint: 'Vergrößern hilft hier kaum. Geht etwas zurück oder kneift die Augen zusammen, bis die Linien unscharf werden.', praise: 'Ihr habt der Täuschung nicht geglaubt.', beat: 'Die Zahl flackert auch auf Maras Messgerät. Für einen Augenblick steht hinter ihr ein Kind — dann bleibt nur sein Umriss im Bildschirmrauschen.', transmission: 'Das Prüfbild kann zur besseren Ansicht separat geladen werden.', downloadAsset: 'assets/geisterhaus/optisches-pruefraster.png', downloadLabel: 'Optisches Prüfbild herunterladen' },
       { page: 7, no: 4, answer: 'SCHRANK', taunt: 'Der Spiegel verdreht nicht nur Worte. Gerade hat er über euch gelacht.', hint: 'Lest nicht jeden Buchstaben gespiegelt. Kehrt zuerst die gesamte Leserichtung des Satzes um.', praise: 'Die Spiegelstimme ist lesbar.', beat: 'Im Schrank liegt kein Kleid, sondern ein Bibliotheksausweis auf den Namen Edna Voss. Zwischen den Lamellen zieht kalte Luft aus Richtung Erdgeschoss.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 5.' },
       { page: 5, no: 5, answer: 'SPIEGEL', taunt: 'Die Bücher sind seit 1899 verstaubt und trotzdem schneller als ihr.', hint: 'Folgt den Markierungen von unten nach oben. Jede Zahl bezeichnet ihre Position im Alphabet.', praise: 'Die Buchrücken stehen wieder richtig.', beat: 'Ein Buch springt auf. Alle Seiten sind leer, bis Mara es vor den blinden Wandspiegel hält. Darin erscheint ein Klavier mit sechs gedrückten Tasten.', transmission: 'RAUM FREIGEGEBEN // Öffnet Seite 6.' },
@@ -163,7 +163,14 @@ function pageImageSource(page) {
 function getPuzzleHelp(p) {
   const theme=helpThemes[game.theme.mode]||helpThemes.default;
   const specific=helpLibrary[gameId]?.[step]||{};
-  return { warning: theme.warning, taunt: p.taunt||specific.taunt||theme.taunt, hint: p.hint||specific.hint||theme.hint };
+  return {
+    warning: p.hintWarning||theme.warning,
+    taunt: p.taunt||specific.taunt||theme.taunt,
+    hint: p.hint||specific.hint||theme.hint,
+    image: p.hintImage,
+    imageAlt: p.hintImageAlt||'Bildhilfe zum aktuellen Rätsel',
+    caption: p.hintCaption
+  };
 }
 
 function getViewerWarning() {
@@ -275,7 +282,7 @@ function render() {
     ${pageViewer}
     <label for="answer">Eure Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="${p.inputMode||'text'}" placeholder="Code oder Lösungswort">
     <button id="check" type="button"><span>Prüfen</span></button><p id="message" aria-live="polite"></p>
-    <div class="hint-zone"><button id="openHint" class="hint-button" type="button"><span>☠ Kleine Hilfe anfordern</span></button><div id="hintWarning" class="hint-warning" hidden><strong>Wirklich Hilfe benutzen?</strong><p>${helper.warning}</p><div class="hint-actions"><button id="confirmHint" type="button"><span>Ja, Hinweis zeigen</span></button><button id="cancelHint" class="secondary-action" type="button"><span>Nein, weitergrübeln</span></button></div></div><div id="hintReveal" class="hint-reveal" hidden><strong>${helper.taunt}</strong><p>${helper.hint}</p></div></div></div>`;
+    <div class="hint-zone"><button id="openHint" class="hint-button" type="button"><span>☠ Kleine Hilfe anfordern</span></button><div id="hintWarning" class="hint-warning" hidden><strong>${helper.image?'Achtung: deutlicher Bild-Spoiler':'Wirklich Hilfe benutzen?'}</strong><p>${helper.warning}</p><div class="hint-actions"><button id="confirmHint" type="button"><span>${helper.image?'Ja, Markierungen zeigen':'Ja, Hinweis zeigen'}</span></button><button id="cancelHint" class="secondary-action" type="button"><span>Nein, weitergrübeln</span></button></div></div><div id="hintReveal" class="hint-reveal ${helper.image?'hint-reveal--image':''}" hidden><strong>${helper.taunt}</strong>${helper.image?`<figure class="hint-image"><img src="${helper.image}" alt="${helper.imageAlt}" loading="lazy">${helper.caption?`<figcaption>${helper.caption}</figcaption>`:''}</figure>`:`<p>${helper.hint}</p>`}</div></div></div>`;
   $('check').onclick=check; $('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()});
   $('openHint').onclick=()=>{$('openHint').hidden=true;$('hintWarning').hidden=false;$('confirmHint').focus()};
   $('cancelHint').onclick=()=>{$('hintWarning').hidden=true;$('openHint').hidden=false;$('openHint').focus()};
