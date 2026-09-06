@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v13
+# Escape-Archiv · Decoder v14
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -20,6 +20,8 @@ Jede Station in allen vier Spielen besitzt eine freiwillige kleine Hilfe. Vor de
 Bei jedem Rätsel lässt sich die benötigte Druckseite nach einer zum Spiel passenden Sicherheitsabfrage direkt in der App öffnen, stufenweise vergrößern und auf dem Gerät speichern. Seitenübergreifende Rätsel bieten automatisch auch die benötigten Vergleichsseiten an. Hinweise auf das nächste Ziel erscheinen beim Geisterhaus erst nach einer richtigen Lösung.
 
 Die Hilfe und Großansicht sind als gemeinsame Decoder-Funktionen aufgebaut. Neue Spiele erhalten automatisch eine Standardhilfe; für eine vollständig angepasste Version werden nur ein Themenprofil, ein Druckseiten-Pfad und bei Bedarf einzelne Rätselhinweise ergänzt.
+
+In Version 14 wurden die sieben versteckten Zeichen im Foyer des Geisterhauses für Bildschirm und Schwarz-Weiß-Druck vergrößert und mit einer kontrastreichen weißen Füllung samt dunkler Kontur versehen.
 
 ## Drucksatz
 
