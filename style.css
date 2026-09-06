@@ -289,3 +289,8 @@ body[data-game="nachtlicht"] .page-dialog{border-color:#c29b54}body[data-game="n
 body[data-game="drache"] .page-dialog{border-color:#d6a54a}body[data-game="drache"] .page-dialog__inner{background:radial-gradient(circle at 80% 0,rgba(214,165,74,.16),transparent 36%),#140b0d}body[data-game="drache"] .page-tabs button.is-active{color:#281711;background:#e6bd69;border-color:#f2d17b}
 body[data-game="zeitfehler"] .page-dialog{border:2px solid #fff}body[data-game="zeitfehler"] .page-dialog__inner{background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(255,255,255,.025) 4px 5px),#030504}body[data-game="zeitfehler"] .page-dialog h2{font-family:Consolas,"Courier New",monospace}body[data-game="zeitfehler"] .page-tabs button.is-active{color:#000;background:#fff;border-color:#fff}
 @media(max-width:600px){.page-dialog{width:calc(100% - 8px);max-height:calc(100svh - 8px)}.page-dialog__inner{padding:18px 12px 12px}.page-image-scroll{max-height:calc(100svh - 278px)}.page-dialog__controls{grid-template-columns:1fr 1.4fr 1fr}.page-dialog__controls .image-action{grid-column:1/-1}.page-warning{padding:15px}}
+
+/* ---------- Zusätzliche Story-Funksprüche ---------- */
+.story-log{margin:18px 0}.story-log p{margin:0;color:inherit;line-height:1.65}.story-log p+p{margin-top:14px}.story-addition{padding:14px 16px;border-left:3px solid var(--accent);background:rgba(0,0,0,.045)}
+body[data-game="geisterhaus"] .story-addition{color:#272828!important;background:repeating-linear-gradient(-7deg,rgba(0,0,0,.022) 0 1px,transparent 1px 7px),rgba(30,31,31,.055);border-left-color:#252626}
+@media(max-width:520px){.story-log{margin:15px 0}.story-log p{line-height:1.58}.story-addition{padding:12px 13px}}

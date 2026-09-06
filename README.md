@@ -1,4 +1,4 @@
-# Escape-Archiv · Decoder v16
+# Escape-Archiv · Decoder v18
 
 Statische, mobile Escape-Decoder-Web-App für vier Spiele. Keine Installation, kein Build-Schritt und kein Backend nötig.
 
@@ -23,10 +23,14 @@ Die Hilfe und Großansicht sind als gemeinsame Decoder-Funktionen aufgebaut. Neu
 
 In Version 16 passen sich die sieben versteckten Zeichen im Foyer automatisch an die Helligkeit ihres jeweiligen Bildbereichs an. Ohne auffällige Kontur wirken sie wie Bestandteile der Bleistiftzeichnung und werden erst beim bewussten Absuchen erkennbar.
 
+Die Hilfe zu Geisterhaus · Seite 4 · Rätsel 2 verwendet statt eines Texttipps eine ausdrücklich angekündigte Spoiler-Grafik mit allen sieben deutlich markierten Zeichen. Erst nach der verschärften Warnung und Bestätigung wird das Bild eingeblendet.
+
+Version 18 erweitert den Handlungsfortschritt des Geisterhauses nach jeder richtigen Lösung. Fünfzehn zusätzliche, mobil lesbare Story-Funksprüche führen Maras Untersuchung, Ednas wahre Rolle und die Bedrohung mit den gestohlenen Stimmen bis zum Finale zusammen. Rätsel, Lösungen und Seitenreihenfolge bleiben unverändert.
+
 ## Drucksatz
 
 Der separate Drucksatz `Das-verlassene-Geisterhaus-15-Seiten.zip` enthält 15 nummerierte A4-PNG-Dateien. Seite 12 wird gefaltet, Seite 13 ausgeschnitten und Seite 14 als Lochmaske auf Seite 2 gelegt. Die Seiten 2 und 14 unbedingt mit identischer Einstellung bei 100 % / tatsächlicher Größe drucken.
 
 ## Sicherheitsfach
 
-Auf der Hauptübersicht stehen die Druckdateien aller vier Spiele als lokale Downloads bereit. Der Notfallcode `****` öffnet die schrittweise Lösungsanzeige für die Spielleitung. Die Anzeige wird direkt aus den Rätseldaten aufgebaut und übernimmt dadurch auch später ergänzte Spiele und Lösungen automatisch.
+Auf der Hauptübersicht stehen die Druckdateien aller vier Spiele als lokale Downloads bereit. Der Notfallcode `9119` öffnet die schrittweise Lösungsanzeige für die Spielleitung. Die Anzeige wird direkt aus den Rätseldaten aufgebaut und übernimmt dadurch auch später ergänzte Spiele und Lösungen automatisch.

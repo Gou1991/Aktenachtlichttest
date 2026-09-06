@@ -153,6 +153,23 @@ const viewerLabels = {
   nachtlicht: 'NAUTISCHES BILDARCHIV', drache: 'KÖNIGLICHES BILDARCHIV',
   zeitfehler: 'VIEWPORT // PRINT_CACHE', geisterhaus: 'DIGITALES HAUSARCHIV', default: 'DIGITALES BILDARCHIV'
 };
+const ghostStoryExpansions = {
+  1: ['Im Funk knackt eine zweite, viel leisere Stimme: „Mara, folge niemals einer Tür, die von selbst offen steht.“ Gleichzeitig verändert sich die Tinte auf ihrem Grundriss. Nur der Weg ins Foyer bleibt sichtbar; alle anderen Räume werden schwarz.'],
+  2: ['Mara fotografiert jedes Zeichen. Auf dem Display stehen sie für einen Herzschlag lang an anderen Stellen, als hätte das Haus sie neu versteckt. Aus dem oberen Flur flüstert ein Kind: „Er benutzt die Stimmen der anderen.“ Dann schlägt die vernagelte Tür einmal von innen.'],
+  3: ['Das Messgerät zählt ebenfalls bis sieben, obwohl Mara keine Taste berührt. Im schwarzen Bildschirm erkennt sie hinter dem Kinderumriss eine hochgewachsene Gestalt. Als sie sich umdreht, ist der Flur leer — doch auf dem Spiegel liegt plötzlich eine kleine Handfläche im Staub.'],
+  4: ['Der Ausweis trägt Ednas Foto, aber das Ausleihdatum liegt drei Tage nach ihrem Verschwinden. Auf der Rückseite steht: „Spiegel bewahren nicht das Gesicht. Sie bewahren, was dahinter wartet.“ Maras eigenes Spiegelbild reagiert einen Augenblick zu spät.'],
+  5: ['Im gespiegelten Logbuch erscheint eine weitere Zeile: „Mutter glaubt, der Gast sei Vater. Aber Vater klopft niemals von innen.“ Noch bevor Mara sie abschreiben kann, klappt das Buch zu. Aus dem Musikzimmer antworten sechs einzelne Tasten.'],
+  6: ['Nach dem letzten Ton bleibt eine Taste niedergedrückt. Darunter klemmt ein vergilbter Sitzplan mit vier Initialen, während aus der Küche Gläser über den Tisch rutschen. Edna flüstert hastig: „Ordnet sie, bevor der fünfte Gast seinen Platz findet.“'],
+  7: ['Hinter den Rohren entdeckt Mara vier eingeritzte Namen der Familie Voss. Ein fünfter Platz ist leer, doch aus dem Schacht spricht bereits ihre eigene Stimme: „Komm herunter.“ Die echte Mara sendet nur ein Wort an euch: „Ignorieren.“'],
+  8: ['Mit dem Druck fällt auch die Temperatur. Unter einer Schicht aus schwarzem Kondenswasser erscheint das alte Familienwappen — durchgestrichen von einer Kinderhand. Tief im Mauerwerk setzt ein langsames Pochen ein, als hätte das Haus nach langer Zeit wieder einen Puls.'],
+  9: ['Der Frost kriecht über Maras Ärmel und bildet kurz die Silhouette einer Kuppel. Dort oben dreht sich das Teleskop von selbst und sucht einen Punkt, den es am Himmel nicht geben dürfte. Jede falsche Bewegung lässt die Stimme im Funk deutlicher wie Mara klingen.'],
+  10: ['Unter der Luke steht ein Kinderstuhl im Kreis der sieben großen Sessel. Seine Fesseln wurden nicht zerrissen, sondern sorgfältig geöffnet. Auf dem Tisch liegt ein Foto der letzten Séance; bei jeder Betrachtung scheint eine weitere Person darauf zu stehen.'],
+  11: ['Mit jedem Uhrschlag sieht Mara Bruchstücke jener Nacht: Herr und Frau Voss halten sich nicht zum Gebet an den Händen — sie versuchen etwas im Kreis festzuhalten. Edna steht außerhalb der Kreidelinie und begreift als Einzige, dass das Wesen bereits die Stimme ihres Vaters trägt.'],
+  12: ['Als die neunte Veränderung verschwindet, zeigt das Porträt endlich die ursprüngliche Szene. Edna blickt nicht ängstlich zur Kamera, sondern warnend zu einer dunklen Lücke zwischen ihren Eltern. Jemand hatte sie später übermalt, als sollte die Familie den wirklichen fünften Gast vergessen.'],
+  13: ['Auf der Rückseite der zusammengesetzten Teile steht in Ednas Handschrift: „Ich bin nicht fort. Ich halte die Tür.“ Mara versteht nun, dass das Kind nicht vom Haus gefangen wurde — Edna band ihre eigene Erinnerung freiwillig an die Mauern, damit etwas anderes nicht entkommen konnte.'],
+  14: ['Im Durchgang liegt die letzte Tagebuchseite. Die Eltern benutzten Ednas Namen als Schloss und versteckten den Öffnungsbefehl auf dem Titelblatt. Doch darunter hat Edna einen zweiten Satz geschrieben: „Wenn ihr mich weckt, sprecht meinen Namen zuerst — sonst antwortet der Gast.“'],
+  15: ['Für einen Moment drängt eine zweite, viel größere Gestalt hinter Ednas Schatten aus der Wand. Edna dreht sich um, hebt die Hand und die Kreidelinie schließt sich wie eine Tür. Erst dann tritt sie ins Morgenlicht. Im ganzen Haus verstummen gleichzeitig die geliehenen Stimmen.']
+};
 let pageZoom = 1;
 
 function pageImageSource(page) {
@@ -297,7 +314,9 @@ function render() {
 
 function showBeat(p) {
   const final=step===game.puzzles.length-1;
-  $('stage').innerHTML=`<section class="story-terminal"><p class="terminal-kicker">&gt; ACCESS_GRANTED // ${String(step+1).padStart(2,'0')}</p><div class="story-check">✓</div><h2>${p.praise}</h2><p>${p.beat}</p><div class="next-route">${final?'FINALE FREIGESCHALTET':`NÄCHSTES ZIEL // Seite ${game.puzzles[step+1].page} · Rätsel ${game.puzzles[step+1].no}`}</div><button id="continueStory" type="button"><span>${final?'Zeitkern öffnen':'Weiter zur nächsten Übertragung'}</span></button></section>`;
+  const extra=gameId==='geisterhaus'?(ghostStoryExpansions[p.no]||[]):[];
+  const paragraphs=[p.beat,...extra];
+  $('stage').innerHTML=`<section class="story-terminal"><p class="terminal-kicker">&gt; ACCESS_GRANTED // ${String(step+1).padStart(2,'0')}</p><div class="story-check">✓</div><h2>${p.praise}</h2><div class="story-log">${paragraphs.map((text,index)=>`<p class="${index?'story-addition':''}">${text}</p>`).join('')}</div><div class="next-route">${final?'FINALE FREIGESCHALTET':`NÄCHSTES ZIEL // Seite ${game.puzzles[step+1].page} · Rätsel ${game.puzzles[step+1].no}`}</div><button id="continueStory" type="button"><span>${final?'Zeitkern öffnen':'Weiter zur nächsten Übertragung'}</span></button></section>`;
   $('continueStory').onclick=()=>{ if(final) showFinale(); else {step++; render();} };
 }
 
