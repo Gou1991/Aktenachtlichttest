@@ -297,3 +297,29 @@ body[data-game="zeitfehler"] .page-dialog{border:2px solid #fff}body[data-game="
 .story-log{margin:18px 0}.story-log p{margin:0;color:inherit;line-height:1.65}.story-log p+p{margin-top:14px}.story-addition{padding:14px 16px;border-left:3px solid var(--accent);background:rgba(0,0,0,.045)}
 body[data-game="geisterhaus"] .story-addition{color:#272828!important;background:repeating-linear-gradient(-7deg,rgba(0,0,0,.022) 0 1px,transparent 1px 7px),rgba(30,31,31,.055);border-left-color:#252626}
 @media(max-width:520px){.story-log{margin:15px 0}.story-log p{line-height:1.58}.story-addition{padding:12px 13px}}
+
+/* Drucksatz 20: ruhige, eigenständige Küchenakte. */
+body[data-game="kueche"]{--accent:#728456;--ink:#28332d;background-color:#e8e5d5;background-image:repeating-linear-gradient(90deg,transparent 0 59px,rgba(75,92,59,.065) 60px 61px),repeating-linear-gradient(0deg,transparent 0 59px,rgba(75,92,59,.065) 60px 61px);font-family:Georgia,serif;color:#28332d}
+body[data-game="kueche"] .case-file{background:#fffdf5;border:1px solid #7b8a66;box-shadow:0 22px 70px #26332e35}
+body[data-game="kueche"] .case-file::before,body[data-game="kueche"] .case-file::after{border-color:#7b8a6630}
+body[data-game="kueche"] .theme-emblem{background:#fffdf5 url('assets/menue-cover.png') center/cover;border-color:#728456}
+body[data-game="kueche"] h1,body[data-game="kueche"] h2{font-family:Georgia,serif;color:#293c30;text-shadow:none}
+body[data-game="kueche"] .eyebrow,body[data-game="kueche"] .classification{color:#a94f3d;border-color:#a94f3d}
+body[data-game="kueche"] .story,body[data-game="kueche"] .case-number,body[data-game="kueche"] footer{color:#59674e}
+body[data-game="kueche"] .puzzle-sheet,body[data-game="kueche"] .opening-terminal,body[data-game="kueche"] .story-terminal{background:#f8f7ee;color:#28332d;border:1px solid #ced3bf;border-left:5px solid #728456;box-shadow:0 7px 22px #26332e12}
+body[data-game="kueche"] .puzzle-sheet p,body[data-game="kueche"] .puzzle-sheet label{color:#354134}
+body[data-game="kueche"] input{background:white;color:#26332e;border:2px solid #879772}
+body[data-game="kueche"] button:not(.back-menu){background:#435b40;color:#fffdf5;border-color:#728456;text-shadow:none}
+body[data-game="kueche"] button:not(.back-menu):hover{background:#536c49}
+body[data-game="kueche"] .secondary-action,body[data-game="nachtlicht"] .secondary-action{color:#35492d!important;background:#f5f7ed!important;border-color:#728456!important}
+body[data-game="kueche"] .transmission,body[data-game="kueche"] .hint-warning,body[data-game="kueche"] .hint-reveal,body[data-game="kueche"] .page-warning{background:#e9eddd;color:#28332d;border-color:#9ca789}
+body[data-game="kueche"] .terminal-kicker,body[data-game="kueche"] .status,body[data-game="kueche"] .next-route{color:#556a45}
+body[data-game="kueche"] .progress span{background:linear-gradient(90deg,#728456,#d4a05e)}
+.game-card--kueche .card-art img{object-position:center}.game-card--kueche .card-content strong{font-family:Georgia,serif}
+.finale--kueche .final-dragon-image{border:0;outline:none;box-shadow:none;object-fit:contain;animation:menu-serve 1.5s cubic-bezier(.2,.8,.2,1) both}
+.finale--kueche .success-stamp{color:#64794d;border-color:#64794d}
+.finale--kueche .celebration i{background:#728456;border-radius:70% 10% 70% 10%}
+@keyframes menu-serve{from{opacity:0;transform:translateY(65px) rotate(-12deg) scale(.65)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}
+.solution-walkthrough{padding-left:24px;line-height:1.55}.solution-walkthrough li+li{margin-top:12px}
+.page-image-scroll img{margin-inline:auto}
+@media(prefers-reduced-motion:reduce){.finale--kueche .final-dragon-image,.finale .success-stamp{animation:none;opacity:1}.celebration{display:none}}

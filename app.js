@@ -90,9 +90,9 @@ const games = {
   }
 };
 
-let game, gameId, step = 0, audioContext, emergencyStep = 0;
+let game, gameId, step = 0, audioContext, emergencyStep = 0, answerLocked=false, pendingCheck;
 const $ = id => document.getElementById(id);
-const norm = value => value.trim().toUpperCase().replace(/\s+/g, '').replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE');
+const norm = value => value.normalize('NFC').trim().toUpperCase().replace(/[\s–—-]+/g, '').replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE');
 const helpLibrary = {
   demo: [
     { taunt: 'Der Leuchtturm zählt schneller als ihr.', hint: 'Bearbeitet die vier kleinen Rechnungen einzeln und übertragt die Ergebnisse in der gedruckten Reihenfolge.' },
@@ -208,7 +208,7 @@ let pageZoom = 1;
 
 function pageImageSource(page) {
   const config=game.pageAssets;
-  return `${config.folder}/${config.prefix}${String(page).padStart(2,'0')}.${config.extension||'jpg'}`;
+  return `${config.folder}/${config.prefix}${String(page).padStart(2,'0')}.${config.extension||'jpg'}?v=20`;
 }
 
 function getPuzzleHelp(p) {
@@ -225,12 +225,13 @@ function getPuzzleHelp(p) {
 }
 
 function getViewerWarning() {
+  if(game.puzzles[step].viewerWarning)return game.puzzles[step].viewerWarning;
   const lines=viewerWarnings[game.theme.mode]||viewerWarnings.default;
   return lines[step%lines.length];
 }
 
 function setPageZoom(value) {
-  pageZoom=Math.min(3,Math.max(1,value));
+  pageZoom=Math.min(3,Math.max(.25,value));
   $('pageImage').style.width=`${pageZoom*100}%`;
   $('zoomReset').querySelector('span').textContent=`${Math.round(pageZoom*100)} %`;
 }
@@ -284,7 +285,7 @@ function unlockEmergency() {
 function renderEmergency(revealed=false) {
   const id=$('emergencyGame').value || Object.keys(games)[0], entry=games[id], puzzle=entry.puzzles[emergencyStep];
   const location=puzzle.no!==undefined ? `Seite ${puzzle.page} · Rätsel ${puzzle.no}` : puzzle.plural ? `Seiten ${puzzle.page}` : `Seite ${puzzle.page}`;
-  $('solutionCard').innerHTML=`<p class="solution-progress">SCHRITT ${emergencyStep+1} / ${entry.puzzles.length}</p><h3>${location}</h3><div class="solution-answer ${revealed?'is-revealed':''}">${revealed?`LÖSUNG: <strong>${puzzle.answer}</strong>`:'Lösung noch verdeckt'}</div>`;
+  $('solutionCard').innerHTML=`<p class="solution-progress">SCHRITT ${emergencyStep+1} / ${entry.puzzles.length}</p><h3>${location}</h3><div class="solution-answer ${revealed?'is-revealed':''}">${revealed?`LÖSUNG: <strong>${puzzle.answer}</strong>`:'Lösung noch verdeckt'}</div>${revealed?`<ol class="solution-walkthrough">${puzzle.solutionSteps.map(text=>`<li>${text}</li>`).join('')}</ol>`:''}`;
   $('revealSolution').hidden=revealed;
   $('nextSolution').hidden=!revealed || emergencyStep>=entry.puzzles.length-1;
 }
@@ -295,16 +296,18 @@ function nextEmergencySolution() {
 }
 
 function showMenu(updateUrl = true) {
+  clearTimeout(pendingCheck); answerLocked=false;
   game = gameId = undefined; step = 0; document.body.dataset.game = 'menu';
   document.documentElement.style.setProperty('--accent', '#c7a25b');
   $('classification').textContent = 'SPIELARCHIV'; $('caseNumber').textContent = `${Object.keys(games).length} EINSATZAKTEN`;
   $('title').textContent = 'Escape-Archiv'; $('story').textContent = 'Wählt eure Akte. Der Decoder passt sich vollständig an die Welt des Spiels an.';
-  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'BEREIT';
+  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'VERSION 20 · DRUCKSATZ 20';
   $('decoder').hidden = true; $('selectWrap').hidden = false;
   if (updateUrl) history.replaceState(null, '', location.pathname);
 }
 
 function start(id, updateUrl = true) {
+  clearTimeout(pendingCheck); answerLocked=false;
   gameId=id; game=games[id]; step=0; document.documentElement.style.setProperty('--accent',game.theme.accent);
   document.body.dataset.game=game.theme.mode; $('classification').textContent=game.classification; $('caseNumber').textContent=`FALL NR. ${game.caseNumber}`;
   $('title').textContent=game.name; $('story').textContent=game.story; $('footerBrand').textContent=game.name; $('footerStatus').textContent='VERTRAULICH';
@@ -318,6 +321,7 @@ function showOpening() {
 }
 
 function render() {
+  answerLocked=false;
   const p=game.puzzles[step], numbered=p.no!==undefined;
   const pageText=numbered ? `Seite ${p.page} · Rätsel ${p.no}` : `Seite ${p.page}`;
   const prompt=p.plural ? `Gebt die gemeinsame Lösung der Seiten ${p.page} ein.` : `Gebt die Lösung von ${pageText} ein.`;
@@ -341,7 +345,7 @@ function render() {
   if(imagePages.length){
     $('openPageWarning').onclick=()=>{$('openPageWarning').hidden=true;$('pageWarning').hidden=false;$('confirmPageView').focus()};
     $('cancelPageView').onclick=()=>{$('pageWarning').hidden=true;$('openPageWarning').hidden=false;$('openPageWarning').focus()};
-    $('confirmPageView').onclick=()=>openPageDialog(imagePages,p.page);
+    $('confirmPageView').onclick=()=>{$('pageWarning').hidden=true;$('openPageWarning').hidden=false;openPageDialog(imagePages,p.page)};
   }
   $('answer').focus({preventScroll:true});
 }
@@ -355,13 +359,19 @@ function showBeat(p) {
   const nextTarget=next?(next.no!==undefined?`Seite ${next.page} · Rätsel ${next.no}`:next.plural?`Seiten ${next.page}`:`Seite ${next.page}`):'';
   const finalButton=finaleButtonLabels[game.theme.mode]||finaleButtonLabels.default;
   $('stage').innerHTML=`<section class="story-terminal"><p class="terminal-kicker">&gt; ACCESS_GRANTED // ${String(step+1).padStart(2,'0')}</p><div class="story-check">✓</div><h2>${p.praise||track.praise||'Spur gesichert.'}</h2><div class="story-log">${paragraphs.map((text,index)=>`<p class="${index?'story-addition':''}">${text}</p>`).join('')}</div><div class="next-route">${final?'FINALE FREIGESCHALTET':`NÄCHSTES ZIEL // ${nextTarget}`}</div><button id="continueStory" type="button"><span>${final?finalButton:'Weiter zur nächsten Übertragung'}</span></button></section>`;
-  $('continueStory').onclick=()=>{ if(final) showFinale(); else {step++; render();} };
+  const continueButton=$('continueStory');
+  continueButton.onclick=()=>{ if(continueButton.disabled)return;continueButton.disabled=true; if(final) showFinale(); else {step++; render();} };
+  $('stage').scrollIntoView?.({block:'start',behavior:'smooth'});
 }
 
 function armAudio(){
   if(!game.finale.sound)return;
-  audioContext=audioContext||new (window.AudioContext||window.webkitAudioContext)();
-  if(audioContext.state==='suspended')audioContext.resume();
+  try {
+    const Audio=window.AudioContext||window.webkitAudioContext;
+    if(!Audio)return;
+    audioContext=audioContext||new Audio();
+    if(audioContext.state==='suspended')audioContext.resume().catch(()=>{});
+  } catch { audioContext=undefined; }
 }
 
 function playFinalSound(){
@@ -372,17 +382,20 @@ function playFinalSound(){
 
 function showFinale() {
   const f=game.finale;
-  const artwork=f.image?`<img class="final-dragon-image" src="${f.image}" alt="Fyrion beschützt ein frisch geschlüpftes Drachenjunges">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
+  const artwork=f.image?`<img class="final-dragon-image" src="${f.image}" alt="${f.imageAlt||'Fyrion beschützt ein frisch geschlüpftes Drachenjunges'}">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
   $('stage').innerHTML=`<section class="finale finale--${game.theme.mode}" aria-labelledby="finaleTitle"><div class="celebration" aria-hidden="true">${'<i></i>'.repeat(12)}</div>${artwork}<p class="final-kicker">${f.kicker}</p><h2 id="finaleTitle">${f.title}</h2><p>${f.text}</p><div class="success-stamp">${f.stamp}</div>${f.sound?'<button id="replaySound" class="secondary-action" type="button"><span>♫ Erfolgssignal wiederholen</span></button>':''}<button id="toMenu" type="button"><span>Zur Spielauswahl</span></button></section>`;
   $('toMenu').onclick=()=>showMenu(); if(f.sound){$('replaySound').onclick=playFinalSound; playFinalSound();}
 }
 
 function check() {
+  if(answerLocked||!game)return;
   armAudio(); const p=game.puzzles[step];
-  if(norm($('answer').value)===norm(p.answer)){
+  if([p.answer,...(p.acceptedAnswers||[])].some(answer=>norm($('answer').value)===norm(answer))){
+    answerLocked=true; $('check').disabled=true; $('answer').disabled=true;
     $('message').textContent='✓ Richtig'; $('message').className='ok';
     const hasStory=p.beat||additionalStoryTracks[gameId]?.[step]||(gameId==='geisterhaus'&&ghostStoryExpansions[p.no]);
-    setTimeout(()=> hasStory ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale()),600);
+    const checkedGame=gameId,checkedStep=step;
+    pendingCheck=setTimeout(()=>{if(gameId!==checkedGame||step!==checkedStep)return;hasStory ? showBeat(p) : (step<game.puzzles.length-1?(step++,render()):showFinale());},600);
   } else { $('message').textContent='✕ Noch nicht richtig'; $('message').className='bad'; }
 }
 
@@ -398,4 +411,6 @@ function initialize(){
   $('pageDialog').addEventListener('click',e=>{if(e.target===$('pageDialog'))$('pageDialog').close()});
   const id=new URLSearchParams(location.search).get('game'); id&&games[id]?start(id,false):showMenu(false);
 }
+registerMenuGame(games);
+applyContentRevision20({games,helpLibrary,additionalStoryTracks,ghostStoryExpansions});
 initialize();
