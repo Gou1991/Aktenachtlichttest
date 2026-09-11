@@ -301,7 +301,7 @@ function showMenu(updateUrl = true) {
   document.documentElement.style.setProperty('--accent', '#c7a25b');
   $('classification').textContent = 'SPIELARCHIV'; $('caseNumber').textContent = `${Object.keys(games).length} EINSATZAKTEN`;
   $('title').textContent = 'Escape-Archiv'; $('story').textContent = 'Wählt eure Akte. Der Decoder passt sich vollständig an die Welt des Spiels an.';
-  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'VERSION 20 · DRUCKSATZ 20';
+  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'VERSION 21 · DRUCKSATZ 20';
   $('decoder').hidden = true; $('selectWrap').hidden = false;
   if (updateUrl) history.replaceState(null, '', location.pathname);
 }
@@ -337,11 +337,9 @@ function render() {
     ${pageViewer}
     <label for="answer">Eure Lösung</label><input id="answer" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="${p.inputMode||'text'}" placeholder="Code oder Lösungswort">
     <button id="check" type="button"><span>Prüfen</span></button><p id="message" aria-live="polite"></p>
-    <div class="hint-zone"><button id="openHint" class="hint-button" type="button"><span>☠ Kleine Hilfe anfordern</span></button><div id="hintWarning" class="hint-warning" hidden><strong>${helper.image?'Achtung: deutlicher Bild-Spoiler':'Wirklich Hilfe benutzen?'}</strong><p>${helper.warning}</p><div class="hint-actions"><button id="confirmHint" type="button"><span>${helper.image?'Ja, Markierungen zeigen':'Ja, Hinweis zeigen'}</span></button><button id="cancelHint" class="secondary-action" type="button"><span>Nein, weitergrübeln</span></button></div></div><div id="hintReveal" class="hint-reveal ${helper.image?'hint-reveal--image':''}" hidden><strong>${helper.taunt}</strong>${helper.image?`<figure class="hint-image"><img src="${helper.image}" alt="${helper.imageAlt}" loading="lazy">${helper.caption?`<figcaption>${helper.caption}</figcaption>`:''}</figure>`:`<p>${helper.hint}</p>`}</div></div></div>`;
+    ${progressiveHelpMarkup(p,helper)}</div>`;
   $('check').onclick=check; $('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check()});
-  $('openHint').onclick=()=>{$('openHint').hidden=true;$('hintWarning').hidden=false;$('confirmHint').focus()};
-  $('cancelHint').onclick=()=>{$('hintWarning').hidden=true;$('openHint').hidden=false;$('openHint').focus()};
-  $('confirmHint').onclick=()=>{$('hintWarning').hidden=true;$('hintReveal').hidden=false};
+  bindProgressiveHelp(p,helper);
   if(imagePages.length){
     $('openPageWarning').onclick=()=>{$('openPageWarning').hidden=true;$('pageWarning').hidden=false;$('confirmPageView').focus()};
     $('cancelPageView').onclick=()=>{$('pageWarning').hidden=true;$('openPageWarning').hidden=false;$('openPageWarning').focus()};
@@ -382,7 +380,7 @@ function playFinalSound(){
 
 function showFinale() {
   const f=game.finale;
-  const artwork=f.image?`<img class="final-dragon-image" src="${f.image}" alt="${f.imageAlt||'Fyrion beschützt ein frisch geschlüpftes Drachenjunges'}">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
+  const artwork=gameId==='geisterhaus'?`<div class="haunted-release" role="img" aria-label="Der Nebel weicht aus Haus Amselgrund. Der Spuk endet im Morgenlicht."><img src="assets/geisterhaus-finale.png" alt="" class="haunted-house-image"><div class="haunted-mist" aria-hidden="true"></div><div class="haunted-dawn" aria-hidden="true"></div><span class="haunted-caption">DER SPUK IST VORBEI</span></div>`:f.image?`<img class="final-dragon-image" src="${f.image}" alt="${f.imageAlt||'Fyrion beschützt ein frisch geschlüpftes Drachenjunges'}">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
   $('stage').innerHTML=`<section class="finale finale--${game.theme.mode}" aria-labelledby="finaleTitle"><div class="celebration" aria-hidden="true">${'<i></i>'.repeat(12)}</div>${artwork}<p class="final-kicker">${f.kicker}</p><h2 id="finaleTitle">${f.title}</h2><p>${f.text}</p><div class="success-stamp">${f.stamp}</div>${f.sound?'<button id="replaySound" class="secondary-action" type="button"><span>♫ Erfolgssignal wiederholen</span></button>':''}<button id="toMenu" type="button"><span>Zur Spielauswahl</span></button></section>`;
   $('toMenu').onclick=()=>showMenu(); if(f.sound){$('replaySound').onclick=playFinalSound; playFinalSound();}
 }
@@ -413,4 +411,6 @@ function initialize(){
 }
 registerMenuGame(games);
 applyContentRevision20({games,helpLibrary,additionalStoryTracks,ghostStoryExpansions});
+helpLibrary.demo[1].taunt='Der Wärter hätte das auch bei dichtem Nebel gelesen.';
+games.geisterhaus.puzzles[1].hint='Nicht jeder Strich gehört zum alten Gemäuer. Sucht kleine, bewusst gesetzte Formen an unterschiedlichen Stellen des Raumes.';
 initialize();
