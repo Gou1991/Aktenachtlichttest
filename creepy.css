@@ -1,0 +1,42 @@
+body[data-game="creepypasta"]{--ink:#e8e9ed;--paper:#17191e;--stamp:#db9ca5;background:linear-gradient(#11141be8,#11141be8),url('assets/thread/corridor.jpg') center/cover fixed;font-family:Consolas,'Courier New',monospace;color:#e8e9ed}
+body[data-game="creepypasta"] .case-file{background:#181b21;border:1px solid #626670;border-radius:2px;transform:none;box-shadow:0 22px 70px #000b;overflow:hidden}
+body[data-game="creepypasta"] .case-file::after,body[data-game="creepypasta"] .paper-clip{display:none}
+body[data-game="creepypasta"] .case-file::before{border-color:#41454e;border-radius:0}
+body[data-game="creepypasta"] .theme-emblem{background:url('assets/thread/cover.jpg') center/cover;border:1px solid #858993;border-radius:2px;box-shadow:none;filter:none}
+body[data-game="creepypasta"] .theme-emblem::after{display:none}
+body[data-game="creepypasta"] .lighthouse-mark{background:url('assets/thread/cover.jpg') center/cover;border:1px solid #777;width:62px;height:82px;filter:none}
+body[data-game="creepypasta"] .lighthouse-mark>*{display:none}
+body[data-game="creepypasta"] h1,body[data-game="creepypasta"] h2{font-family:Georgia,serif;color:#f4f0ef;letter-spacing:-.02em}
+body[data-game="creepypasta"] h1{font-size:clamp(28px,6.8vw,48px);line-height:1.05;overflow-wrap:anywhere}
+body[data-game="creepypasta"] .story,body[data-game="creepypasta"] label,body[data-game="creepypasta"] .status,body[data-game="creepypasta"] footer,body[data-game="creepypasta"] .eyebrow,body[data-game="creepypasta"] #caseNumber{color:#c3c6ce}
+body[data-game="creepypasta"] .puzzle-sheet,body[data-game="creepypasta"] .opening-terminal,body[data-game="creepypasta"] .story-terminal,body[data-game="creepypasta"] .hint-reveal,body[data-game="creepypasta"] .hint-warning,body[data-game="creepypasta"] .page-warning,body[data-game="creepypasta"] .transmission{background:#20242c;border:1px solid #626670;color:#ecedf1;box-shadow:none}
+body[data-game="creepypasta"] .story-log,body[data-game="creepypasta"] .story-addition,body[data-game="creepypasta"] .opening-terminal p{color:#e3e5ea}
+body[data-game="creepypasta"] .hint-reveal strong,body[data-game="creepypasta"] .terminal-kicker,body[data-game="creepypasta"] #typeLabel,body[data-game="creepypasta"] .next-route{color:#e1a9b2}
+body[data-game="creepypasta"] .progress span{background:#b96a77}
+body[data-game="creepypasta"] #prompt{color:#e3e5ea}
+body[data-game="creepypasta"] .hint-button,body[data-game="creepypasta"] .page-viewer-button{color:#f1dce0!important;background:#292d36!important;border-color:#ac8590!important}
+body[data-game="creepypasta"] .page-viewer{background:#20242c;box-shadow:none;border-color:#626670}
+body[data-game="creepypasta"] .hint-warning p,body[data-game="creepypasta"] .hint-reveal p,body[data-game="creepypasta"] .page-warning p,body[data-game="creepypasta"] .page-warning small{color:#e3e5ea!important}
+body[data-game="creepypasta"] .hint-warning>strong,body[data-game="creepypasta"] .page-warning>strong{color:#efbdc6}
+body[data-game="creepypasta"] .hint-reveal::before{content:"// ARCHIVKOMMENTAR";color:#d7a6b0}
+body[data-game="creepypasta"] input,body[data-game="creepypasta"] select{background:#0f1116;color:#fff;border-color:#8c919e}
+body[data-game="creepypasta"] button{background:#73333e;color:#fff;border-color:#bb7e89;box-shadow:none;letter-spacing:.06em;white-space:normal}
+body[data-game="creepypasta"] .secondary-action{background:transparent!important;color:#e0c1c7!important;border-color:#a77a83!important}
+body[data-game="creepypasta"] .puzzle-download{color:#ebbac4}
+body[data-game="creepypasta"] .ok{color:#b2ddb9}body[data-game="creepypasta"] .bad{color:#ffc6cb}
+.game-card--creepypasta .card-art img{object-position:50% 62%}
+.thread-ending{padding:20px!important;text-align:left!important;animation:none!important;background:#20242c!important;color:#e8e9ed!important;border:1px solid #626670;box-shadow:none!important}
+.thread-ending h2{font-size:clamp(26px,7vw,40px)}
+.thread-connection{display:flex;align-items:center;gap:14px;padding:36px 4px;font-size:14px;letter-spacing:.08em;color:#e1a9b2}
+.thread-connection i{flex:1;height:2px;background:#ad5664;position:relative}
+.thread-dawn{position:relative;overflow:hidden;margin-bottom:24px;border:1px solid #5d626c}
+.thread-dawn img{display:block;width:100%;height:auto;animation:thread-light 6s ease-out both}
+.thread-dawn span{position:absolute;inset:0;background:#101217;animation:thread-uncover 5s ease-out both;pointer-events:none}
+.thread-line{animation:thread-arrive 1.5s ease-out both}.thread-line:nth-of-type(3){animation-delay:.5s}.thread-line:nth-of-type(4){animation-delay:1s}
+.thread-letter{background:#f4f1ec;color:#242326;padding:clamp(18px,4vw,32px);font:17px/1.75 Georgia,serif;border-left:4px solid #b57a85}
+.thread-signature{font-size:30px;font-style:italic}.thread-afterthought{margin-top:30px;padding-top:20px;border-top:1px dashed #727682;font-size:15px;line-height:1.7;color:#c9bbc1}
+@keyframes thread-uncover{from{opacity:.9}to{opacity:0}}
+@keyframes thread-light{from{filter:grayscale(1) brightness(.35)}to{filter:grayscale(.2) brightness(1)}}
+@keyframes thread-arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.thread-ending *{animation:none!important}.thread-dawn span{opacity:0}}
+@media(max-width:520px){body[data-game="creepypasta"] .brand-row{grid-template-columns:52px minmax(0,1fr);gap:12px}body[data-game="creepypasta"] .lighthouse-mark{width:49px;height:65px;transform:none}body[data-game="creepypasta"] .story{font-size:16px}}

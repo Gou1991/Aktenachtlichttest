@@ -301,7 +301,7 @@ function showMenu(updateUrl = true) {
   document.documentElement.style.setProperty('--accent', '#c7a25b');
   $('classification').textContent = 'SPIELARCHIV'; $('caseNumber').textContent = `${Object.keys(games).length} EINSATZAKTEN`;
   $('title').textContent = 'Escape-Archiv'; $('story').textContent = 'Wählt eure Akte. Der Decoder passt sich vollständig an die Welt des Spiels an.';
-  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'VERSION 21 · DRUCKSATZ 20';
+  $('footerBrand').textContent = 'ESCAPE-ARCHIV'; $('footerStatus').textContent = 'VERSION 22 · THREAD-DRUCKSATZ 22';
   $('decoder').hidden = true; $('selectWrap').hidden = false;
   if (updateUrl) history.replaceState(null, '', location.pathname);
 }
@@ -374,11 +374,22 @@ function armAudio(){
 
 function playFinalSound(){
   if(!game.finale.sound||!audioContext)return;
+  if(game.finale.soundProfile==='thread'){
+    const start=audioContext.currentTime;
+    [146.83,174.61,220,293.66].forEach((frequency,i)=>{
+      const oscillator=audioContext.createOscillator(),gain=audioContext.createGain(),at=start+i*.32;
+      oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,at);
+      gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(.035,at+.08);
+      gain.gain.exponentialRampToValueAtTime(.0001,at+1.2);
+      oscillator.connect(gain).connect(audioContext.destination);oscillator.start(at);oscillator.stop(at+1.25);
+    });return;
+  }
   const now=audioContext.currentTime, notes=game.finale.soundProfile==='haunted'?[82,82,196,247,330,494]:[220,330,440,660,880];
   notes.forEach((freq,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.type=i<2?'square':'sine';o.frequency.setValueAtTime(freq,now+i*.13);g.gain.setValueAtTime(.0001,now+i*.13);g.gain.exponentialRampToValueAtTime(.09,now+i*.13+.025);g.gain.exponentialRampToValueAtTime(.0001,now+i*.13+.36);o.connect(g).connect(audioContext.destination);o.start(now+i*.13);o.stop(now+i*.13+.38)});
 }
 
 function showFinale() {
+  if(gameId==='thread'){showThreadFinale();return;}
   const f=game.finale;
   const artwork=gameId==='geisterhaus'?`<div class="haunted-release" role="img" aria-label="Der Nebel weicht aus Haus Amselgrund. Der Spuk endet im Morgenlicht."><img src="assets/geisterhaus-finale.png" alt="" class="haunted-house-image"><div class="haunted-mist" aria-hidden="true"></div><div class="haunted-dawn" aria-hidden="true"></div><span class="haunted-caption">DER SPUK IST VORBEI</span></div>`:f.image?`<img class="final-dragon-image" src="${f.image}" alt="${f.imageAlt||'Fyrion beschützt ein frisch geschlüpftes Drachenjunges'}">`:f.ascii?`<pre class="ascii-finale" aria-label="${f.title}">${f.ascii.join('\n')}</pre>`:`<div class="final-lighthouse" aria-hidden="true"><span class="final-beam"></span><span class="final-lantern"></span><span class="final-tower"></span><span class="final-rocks"></span></div>`;
   $('stage').innerHTML=`<section class="finale finale--${game.theme.mode}" aria-labelledby="finaleTitle"><div class="celebration" aria-hidden="true">${'<i></i>'.repeat(12)}</div>${artwork}<p class="final-kicker">${f.kicker}</p><h2 id="finaleTitle">${f.title}</h2><p>${f.text}</p><div class="success-stamp">${f.stamp}</div>${f.sound?'<button id="replaySound" class="secondary-action" type="button"><span>♫ Erfolgssignal wiederholen</span></button>':''}<button id="toMenu" type="button"><span>Zur Spielauswahl</span></button></section>`;
@@ -411,6 +422,7 @@ function initialize(){
 }
 registerMenuGame(games);
 applyContentRevision20({games,helpLibrary,additionalStoryTracks,ghostStoryExpansions});
+registerThreadGame(games);
 helpLibrary.demo[1].taunt='Der Wärter hätte das auch bei dichtem Nebel gelesen.';
 games.geisterhaus.puzzles[1].hint='Nicht jeder Strich gehört zum alten Gemäuer. Sucht kleine, bewusst gesetzte Formen an unterschiedlichen Stellen des Raumes.';
 initialize();
